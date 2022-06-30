@@ -1,13 +1,38 @@
+import { useState, useEffect } from 'react';
+import Login from '../components/Login';
+import { auth } from '../firebase-config';
+import { onAuthStateChanged } from 'firebase/auth';
+
 import Head from 'next/head';
 import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
-import { useState } from 'react';
 
 export default function Home() {
   const markdown =
     "# Welcome to Markdown\n\nMarkdown is a lightweight markup language that you can use to add formatting elements to plaintext text documents.\n\n## How to use this?\n\n1. Write markdown in the markdown editor window\n2. See the rendered markdown in the preview window\n\n### Features\n\n- Create headings, paragraphs, links, blockquotes, inline-code, code blocks, and lists\n- Name and save the document to access again later\n- Choose between Light or Dark mode depending on your preference\n\n> This is an example of a blockquote. If you would like to learn more about markdown syntax, you can visit this [markdown cheatsheet](https://www.markdownguide.org/cheat-sheet/).\n\n#### Headings\n\nTo create a heading, add the hash sign (#) before the heading. The number of number signs you use should correspond to the heading level. You'll see in this guide that we've used all six heading levels (not necessarily in the correct way you should use headings!) to illustrate how they should look.\n\n##### Lists\n\nYou can see examples of ordered and unordered lists above.\n\n###### Code Blocks\n\nThis markdown editor allows for inline-code snippets, like this: `<p>I'm inline</p>`. It also allows for larger code blocks like this:\n\n```\n<main>\n  <h1>This is a larger code block</h1>\n</main>\n```";
 
   const [text, setText] = useState(markdown);
+
+  const [isAuth, setIsAuth] = useState(false);
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      const currUser = auth.currentUser;
+
+      if (user) {
+        setIsAuth(true);
+
+        setUser({
+          name: user.displayName,
+          email: user.email,
+          photoURL: user.photoURL,
+        });
+      } else {
+        setIsAuth(false);
+      }
+    });
+  }, []);
 
   return (
     <div>
@@ -17,30 +42,29 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex">
-        <textarea
-          onChange={(e) => setText(e.target.value)}
-          value={text}
-          className="w-1/2"
-        ></textarea>
+      <Login isAuth={isAuth} setIsAuth={setIsAuth} />
 
-        <article className="w-1/2 prose prose-h1:text-red-600">
-          <ReactMarkdown>{text}</ReactMarkdown>
-        </article>
-      </main>
+      {isAuth && (
+        <>
+          <div>
+            <h1>{user.name}</h1>
+            <h1>{user.email}</h1>
+            <img src={user.photoURL} alt="" />
+          </div>
 
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+          <main className="flex">
+            <textarea
+              onChange={(e) => setText(e.target.value)}
+              value={text}
+              className="w-1/2"
+            />
+
+            <article className="w-1/2 prose prose-h1:text-red-600">
+              <ReactMarkdown>{text}</ReactMarkdown>
+            </article>
+          </main>
+        </>
+      )}
     </div>
   );
 }
