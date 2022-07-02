@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 // Firebase
 import { auth, db } from '../firebase-config';
-import { collection, getDocs, onSnapshot } from 'firebase/firestore';
+import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 
 import Head from 'next/head';
@@ -16,15 +16,15 @@ export default function Home() {
   const [isAuth, setIsAuth] = useState(false);
   const [user, setUser] = useState({});
   const [markdowns, setMarkdowns] = useState([]);
+  const [isSaved, setIsSaved] = useState(false);
 
   const [ID, setID] = useState(null);
 
   const postsCollectionRef = collection(db, 'posts');
+  const q = query(postsCollectionRef, orderBy('createdAt'));
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      const currUser = auth.currentUser;
-
       if (user) {
         setIsAuth(true);
 
@@ -40,10 +40,12 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    onSnapshot(postsCollectionRef, (data) => {
-      setMarkdowns(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    onSnapshot(q, (data) => {
+      setMarkdowns(
+        data.docs.reverse().map((doc) => ({ ...doc.data(), id: doc.id }))
+      );
     });
-  }, []);
+  }, [ID, isSaved]);
 
   return (
     <div>
@@ -78,7 +80,7 @@ export default function Home() {
                   </p>
                 ))}
             </div>
-            <Markdown ID={ID} />
+            <Markdown ID={ID} setIsSaved={setIsSaved} />
           </main>
         </>
       )}

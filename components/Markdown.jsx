@@ -8,19 +8,17 @@ import {
   Timestamp,
   updateDoc,
   getDoc,
-  getDocs,
-  onSnapshot,
+  deleteDoc,
 } from 'firebase/firestore';
 import { db } from '../firebase-config';
 
 import ReactMarkdown from 'react-markdown';
 
 export default function Markdown({ ID }) {
-  const [singleNote, setSingleNote] = useState({});
+  const [singleMarkdown, setSingleMarkdown] = useState({});
+  const [text, setText] = useState('');
   const [title, setTitle] = useState('');
   const postsCollectionRef = collection(db, 'posts');
-
-  const [text, setText] = useState('');
 
   const addNewMarkdown = async () => {
     try {
@@ -32,7 +30,6 @@ export default function Markdown({ ID }) {
     } catch (error) {
       console.error(error);
     }
-    return;
   };
 
   const saveMarkdownChanges = async (id) => {
@@ -42,6 +39,18 @@ export default function Markdown({ ID }) {
         text,
         createdAt: Timestamp.fromDate(new Date()),
       });
+      window.location.reload();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const deleteMarkdown = async (id) => {
+    try {
+      const userDoc = doc(db, 'posts', id);
+      await deleteDoc(userDoc);
+
+      window.location.reload();
     } catch (error) {
       console.error(error);
     }
@@ -51,9 +60,7 @@ export default function Markdown({ ID }) {
     e.preventDefault();
     try {
       const userDoc = doc(db, 'posts', id);
-      await updateDoc(userDoc, {
-        title,
-      });
+      await updateDoc(userDoc, { title });
     } catch (error) {
       console.error(error);
     }
@@ -65,14 +72,12 @@ export default function Markdown({ ID }) {
         const currentMarkdoown = doc(db, 'posts', ID);
         const data = await getDoc(currentMarkdoown);
 
-        setSingleNote({ ...data.data(), id: data.id });
+        setSingleMarkdown({ ...data.data(), id: data.id });
       }
     };
 
     getCurrentMarkdown();
   }, [ID]);
-
-  console.log(singleNote);
 
   return (
     <>
@@ -86,6 +91,12 @@ export default function Markdown({ ID }) {
         >
           Save Changes
         </button>
+        <button
+          className="border border-orange-900"
+          onClick={() => deleteMarkdown(ID)}
+        >
+          Delete
+        </button>
       </div>
 
       <div>
@@ -93,7 +104,7 @@ export default function Markdown({ ID }) {
         <form action="#" onSubmit={(e) => updateTitle(e, ID)}>
           <input
             type="text"
-            value={title ? title : singleNote.title}
+            value={title ? title : singleMarkdown.title}
             onChange={(e) => setTitle(e.target.value)}
           />
         </form>
@@ -102,16 +113,16 @@ export default function Markdown({ ID }) {
       <div>
         <p>Editor</p>
         <textarea
-          onChange={(e) => setText(e.target.value)}
-          value={text ? text : singleNote.text}
           className="w-1/2"
+          value={text ? text : singleMarkdown.text}
+          onChange={(e) => setText(e.target.value)}
         />
       </div>
 
       <div>
         <p>Preview</p>
         <article className="w-1/2 prose prose-h1:text-red-600">
-          <ReactMarkdown>{text ? text : singleNote.text}</ReactMarkdown>
+          <ReactMarkdown>{text ? text : singleMarkdown.text}</ReactMarkdown>
         </article>
       </div>
     </>
