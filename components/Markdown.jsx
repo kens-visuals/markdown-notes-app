@@ -13,6 +13,7 @@ import {
 import { db } from '../firebase-config';
 
 import ReactMarkdown from 'react-markdown';
+import MarkdownPreview from './MarkdownPreview';
 
 export default function Markdown({ ID }) {
   const [singleMarkdown, setSingleMarkdown] = useState({});
@@ -121,9 +122,9 @@ export default function Markdown({ ID }) {
 
       <div>
         <p>Preview</p>
-        <article className="w-1/2 prose prose-h1:text-red-600">
+        <MarkdownPreview>
           <ReactMarkdown>{text ? text : singleMarkdown.text}</ReactMarkdown>
-        </article>
+        </MarkdownPreview>
       </div>
     </>
   );

@@ -1,10 +1,9 @@
 import { auth, porvider } from '../firebase-config';
-import { signInWithPopup, signInWithRedirect, signOut } from 'firebase/auth';
+import { signInWithPopup, signOut } from 'firebase/auth';
 
 export default function Login({ isAuth, setIsAuth }) {
   const signInWithGoogle = async () => {
     try {
-      //   const res = await signInWithRedirect(auth, porvider);
       const res = await signInWithPopup(auth, porvider);
 
       localStorage.setItem('isAuth', true);
