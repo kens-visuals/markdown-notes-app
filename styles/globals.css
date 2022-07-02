@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    transition: all 0.3s;
+  }
+
+  body {
+    min-height: 100vh;
+  }
+}

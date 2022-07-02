@@ -4,7 +4,12 @@ import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ThemeProvider defaultTheme="system" enableSystem={true} attribute="class">
+    <ThemeProvider
+      enableSystem={true}
+      defaultTheme="system"
+      enableColorScheme={true}
+      attribute="class"
+    >
       <Component {...pageProps} />
     </ThemeProvider>
   );
