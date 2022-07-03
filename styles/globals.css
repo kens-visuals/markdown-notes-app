@@ -13,3 +13,43 @@
     min-height: 100vh;
   }
 }
+
+@layer utilities {
+  .orange-list-marker ul li::marker {
+    color: #e46643;
+  }
+
+  .blockquote-bold blockquote p {
+    font-weight: bold;
+  }
+
+  .blockquote-bold blockquote p::before,
+  .blockquote-bold blockquote p::after {
+    content: '';
+  }
+
+  .heading-5,
+  .heading-6 {
+    font-family: 'Roboto Slab', sans-serif;
+    font-weight: bold;
+  }
+
+  .heading-5 h5 {
+    color: #35393f;
+    font-size: 1rem;
+  }
+
+  .heading-6 {
+  }
+
+  .heading-6 h6 {
+    color: #e46643;
+    font-size: 0.875rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .heading-5 h5 {
+      color: #fff;
+    }
+  }
+}

@@ -1,4 +1,3 @@
-import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
 
 // Firebase
@@ -12,9 +11,7 @@ import Image from 'next/image';
 // components
 import Login from '../components/Login';
 import Markdown from '../components/Markdown';
-const ThemeToggler = dynamic(() => import('../components/ThemeToggler'), {
-  ssr: false,
-});
+import ThemeToggler from '../components/ThemeToggler';
 
 export default function Home() {
   const [isAuth, setIsAuth] = useState(false);
@@ -70,7 +67,7 @@ export default function Home() {
             <img src={user.photoURL} alt="" />
           </div>
 
-          <main className="flex bg-orange-primary dark:bg-orange-secondary">
+          <main className="flex ">
             <div>
               {markdowns &&
                 markdowns.map((markdown) => (

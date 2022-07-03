@@ -114,7 +114,7 @@ export default function Markdown({ ID }) {
       <div>
         <p>Editor</p>
         <textarea
-          className="w-1/2"
+          className="w-1/2 font-roboto-mono"
           value={text ? text : singleMarkdown.text}
           onChange={(e) => setText(e.target.value)}
         />

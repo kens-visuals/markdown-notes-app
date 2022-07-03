@@ -9,7 +9,7 @@ export default function ThemeToggler() {
     setMounted(true);
 
     systemTheme === 'dark' ? setTheme('dark') : setTheme('light');
-  }, []);
+  }, [systemTheme]);
 
   if (!mounted) return null;
 

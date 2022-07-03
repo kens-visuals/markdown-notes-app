@@ -25,6 +25,12 @@ module.exports = {
         'roboto-mono': ['Roboto Mono', 'monospace'],
         'roboto-slab': ['Roboto Slab', 'serif'],
       },
+      fontSize: {
+        'heading-1': ['2rem', '2.625rem'],
+        'heading-2': ['1.75rem', '2.3125rem'],
+        'heading-3': ['1.5rem', '2rem'],
+        'heading-4': ['1.25rem', '1.625rem'],
+      },
     },
   },
   plugins: [require('@tailwindcss/typography')],
