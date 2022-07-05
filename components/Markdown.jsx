@@ -9,6 +9,7 @@ import {
   updateDoc,
   getDoc,
   deleteDoc,
+  setDoc,
 } from 'firebase/firestore';
 import { db } from '../firebase-config';
 
@@ -36,10 +37,14 @@ export default function Markdown({ ID }) {
   const saveMarkdownChanges = async (id) => {
     try {
       const userDoc = doc(db, 'posts', id);
-      await updateDoc(userDoc, {
-        text,
-        createdAt: Timestamp.fromDate(new Date()),
-      });
+      await setDoc(
+        userDoc,
+        {
+          text,
+          createdAt: Timestamp.fromDate(new Date()),
+        },
+        { merge: true }
+      );
       window.location.reload();
     } catch (error) {
       console.error(error);
