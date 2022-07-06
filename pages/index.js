@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 // Firebase
-import { auth, db } from '../firebase-config';
+import { auth, db } from '../firebase/firebase-config';
 import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 

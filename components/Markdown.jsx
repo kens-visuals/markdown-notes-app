@@ -11,7 +11,7 @@ import {
   deleteDoc,
   setDoc,
 } from 'firebase/firestore';
-import { db } from '../firebase-config';
+import { db } from '../firebase/firebase-config';
 
 import ReactMarkdown from 'react-markdown';
 import MarkdownPreview from './MarkdownPreview';
