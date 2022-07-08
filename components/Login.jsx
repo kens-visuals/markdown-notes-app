@@ -1,42 +1,22 @@
-import { db, auth, googleProvider } from '../firebase/firebase-config';
-import { createUserDocFromAuth } from '../firebase/firebase-utils';
-import { signInWithPopup, signOut } from 'firebase/auth';
+import { useContext } from 'react';
 
-export default function Login({ isAuth, setIsAuth }) {
-  const signInWithGoogle = async () => {
-    try {
-      const { user } = await signInWithPopup(auth, googleProvider);
-      const userDocRef = await createUserDocFromAuth(user);
+// Context
+import { UserContext } from '../contexts/UserContext';
 
-      console.log(userDocRef);
+// Firebase
+import { signInWithGoogle, signUserOut } from '../firebase/firebase-utils';
 
-      localStorage.setItem('isAuth', true);
-      setIsAuth(true);
-    } catch (err) {
-      console.error(err);
-      alert(err.message);
-    }
-  };
-
-  const signOutUserOut = async () => {
-    try {
-      await signOut(auth);
-      setIsAuth(false);
-    } catch (err) {
-      console.error(err);
-      alert(err.message);
-    }
-  };
+export default function Login() {
+  const { currentUser } = useContext(UserContext);
 
   return (
     <div>
-      {!isAuth && (
+      {!currentUser ? (
         <button className="bg-red-500" onClick={signInWithGoogle}>
           Sign in with Google
         </button>
-      )}
-      {isAuth && (
-        <button className="bg-green-500" onClick={signOutUserOut}>
+      ) : (
+        <button className="bg-green-500" onClick={signUserOut}>
           Sign out
         </button>
       )}

@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { UserContext } from '../contexts/UserContext';
 
 // Firebase
-import { auth, db } from '../firebase/firebase-config';
+import { db } from '../firebase/firebase-config';
 import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
-import { onAuthStateChanged } from 'firebase/auth';
 
 import Head from 'next/head';
 import Image from 'next/image';
@@ -14,30 +14,14 @@ import Markdown from '../components/Markdown';
 import ThemeToggler from '../components/ThemeToggler';
 
 export default function Home() {
-  const [isAuth, setIsAuth] = useState(false);
-  const [user, setUser] = useState({});
+  const { currentUser } = useContext(UserContext);
+
   const [markdowns, setMarkdowns] = useState([]);
 
   const [ID, setID] = useState(null);
 
   const postsCollectionRef = collection(db, 'posts');
   const q = query(postsCollectionRef, orderBy('createdAt'));
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setIsAuth(true);
-
-        setUser({
-          name: user.displayName,
-          email: user.email,
-          photoURL: user.photoURL,
-        });
-      } else {
-        setIsAuth(false);
-      }
-    });
-  }, []);
 
   useEffect(() => {
     onSnapshot(q, (data) => {
@@ -57,14 +41,14 @@ export default function Home() {
 
       <ThemeToggler />
 
-      <Login isAuth={isAuth} setIsAuth={setIsAuth} />
+      <Login />
 
-      {isAuth && (
+      {currentUser && (
         <>
           <div>
-            <h1>{user.name}</h1>
-            <h1>{user.email}</h1>
-            <img src={user.photoURL} alt="" />
+            <h1>{currentUser.displayName}</h1>
+            <h1>{currentUser.email}</h1>
+            <img src={currentUser.photoURL} alt="" />
           </div>
 
           <main className="flex ">

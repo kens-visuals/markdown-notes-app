@@ -1,5 +1,6 @@
-import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { db } from './firebase-config';
+import { doc, getDoc, setDoc, Timestamp } from 'firebase/firestore';
+import { onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
+import { db, auth, googleProvider } from './firebase-config';
 
 export const createUserDocFromAuth = async (userAuth) => {
   if (!userAuth) return;
@@ -28,15 +29,21 @@ export const createUserDocFromAuth = async (userAuth) => {
 
 export const signInWithGoogle = async () => {
   try {
-    const { user } = await signInWithPopup(auth, googleProvider);
-    const userDocRef = await createUserDocFromAuth(user);
-
-    console.log(userDocRef);
-
-    localStorage.setItem('isAuth', true);
-    setIsAuth(true);
+    await signInWithPopup(auth, googleProvider);
   } catch (err) {
     console.error(err);
     alert(err.message);
   }
 };
+
+export const signUserOut = async () => {
+  try {
+    await signOut(auth);
+  } catch (err) {
+    console.error(err);
+    alert(err.message);
+  }
+};
+
+export const onAuthStateChangedListener = (callback) =>
+  onAuthStateChanged(auth, callback);

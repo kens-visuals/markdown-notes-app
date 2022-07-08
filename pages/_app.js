@@ -1,4 +1,5 @@
 import { ThemeProvider } from 'next-themes';
+import { UserProvider } from '../contexts/UserContext';
 
 import '../styles/globals.css';
 
@@ -10,7 +11,9 @@ function MyApp({ Component, pageProps }) {
       enableColorScheme={true}
       attribute="class"
     >
-      <Component {...pageProps} />
+      <UserProvider>
+        <Component {...pageProps} />
+      </UserProvider>
     </ThemeProvider>
   );
 }
