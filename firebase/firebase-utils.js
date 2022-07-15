@@ -9,6 +9,8 @@ import {
   addDoc,
   serverTimestamp,
   deleteDoc,
+  ref,
+  getDocs,
 } from 'firebase/firestore';
 import { onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
 import { db, auth, googleProvider } from './firebase-config';
@@ -70,10 +72,9 @@ export const onAuthStateChangedListener = (callback) =>
 export const getUserMarkdowns = (callback, uid) => {
   const usersCollectionRef = collection(db, 'users', `${uid}`, 'markdowns');
 
-  // NOTE: uncomment later
-  // const q = query(usersCollectionRef, orderBy('createdAt'));
+  const q = query(usersCollectionRef, orderBy('createdAt'));
 
-  return onSnapshot(usersCollectionRef, callback);
+  return onSnapshot(q, callback);
 };
 
 export const addNewMarkdown = async (uid) => {
@@ -82,8 +83,8 @@ export const addNewMarkdown = async (uid) => {
 
   try {
     await addDoc(usersCollectionRef, {
-      text: '',
       title: 'untitled-markdown.md',
+      content: '',
       createdAt,
     });
   } catch (error) {
@@ -93,14 +94,10 @@ export const addNewMarkdown = async (uid) => {
 
 export const deleteMarkdown = async (uid, id) => {
   try {
-    // const userDoc = doc(db, 'posts', uid);
     const usersCollectionRef = collection(db, 'users', `${uid}`, 'markdowns');
-    const markdownDoc = doc(usersCollectionRef, id);
-    console.log(usersCollectionRef);
+    const markdownRef = doc(usersCollectionRef, id);
 
-    // await deleteDoc(usersCollectionRef);
-
-    window.location.reload();
+    await deleteDoc(markdownRef);
   } catch (error) {
     console.error(error);
   }

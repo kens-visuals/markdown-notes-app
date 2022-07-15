@@ -4,13 +4,13 @@ import ReactMarkdown from 'react-markdown';
 // Firebase
 import {
   doc,
-  addDoc,
   collection,
   Timestamp,
   updateDoc,
   getDoc,
   deleteDoc,
   setDoc,
+  ref,
 } from 'firebase/firestore';
 import { db } from '../firebase/firebase-config';
 import { addNewMarkdown, deleteMarkdown } from '../firebase/firebase-utils';
@@ -27,45 +27,46 @@ export default function Markdown({ currentMarkdown }) {
   const [text, setText] = useState(currentMarkdown.content);
   const [title, setTitle] = useState(currentMarkdown.title);
 
-  // console.log(currentMarkdown);
+  // console.log(currentMarkdown.id);
 
-  const saveMarkdownChanges = async (id) => {
-    try {
-      const userDoc = doc(db, 'posts', id);
-      await setDoc(
-        userDoc,
-        {
-          text,
-          createdAt: Timestamp.fromDate(new Date()),
-        },
-        { merge: true }
-      );
-      window.location.reload();
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  // const deleteMarkdown = async (id) => {
+  // const saveMarkdownChanges = async (id) => {
   //   try {
   //     const userDoc = doc(db, 'posts', id);
-  //     await deleteDoc(userDoc);
-
+  //     await setDoc(
+  //       userDoc,
+  //       {
+  //         text,
+  //         createdAt: Timestamp.fromDate(new Date()),
+  //       },
+  //       { merge: true }
+  //     );
   //     window.location.reload();
   //   } catch (error) {
   //     console.error(error);
   //   }
   // };
 
-  const updateTitle = async (e, id) => {
-    e.preventDefault();
-    try {
-      const userDoc = doc(db, 'posts', id);
-      await updateDoc(userDoc, { title });
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const deleteMarkdown = async (id) => {
+  //   try {
+  //     const userDoc = doc(db, 'markdowns', id);
+  //     await deleteDoc(userDoc);
+
+  //     // DEL
+  //     // window.location.reload();
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+  // const updateTitle = async (e, id) => {
+  //   e.preventDefault();
+  //   try {
+  //     const userDoc = doc(db, 'posts', id);
+  //     await updateDoc(userDoc, { title });
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   //   useEffect(() => {
   //     const getCurrentMarkdown = async () => {

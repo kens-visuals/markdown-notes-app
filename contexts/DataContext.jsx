@@ -14,7 +14,7 @@ export const DataContext = createContext({
 
 export function DataProvider({ children }) {
   const { currentUser } = useContext(UserContext);
-  const [data, setData] = useState(DATA);
+  const [data, setData] = useState([]);
   const value = { data, setData };
 
   useEffect(() => {
@@ -25,8 +25,6 @@ export function DataProvider({ children }) {
 
     return () => unsub();
   }, [currentUser?.uid]);
-
-  // console.log(data);
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 }
