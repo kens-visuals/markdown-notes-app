@@ -1,9 +1,5 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { UserContext } from '../contexts/UserContext';
-
-// Firebase
-import { db } from '../firebase/firebase-config';
-import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
 
 import Head from 'next/head';
 import Image from 'next/image';
@@ -47,7 +43,7 @@ export default function Home() {
               {data &&
                 data.map((markdown, idx) => (
                   <button
-                    key={idx} // FIXME: Change to key={markdown.id}
+                    key={markdown.id}
                     className={`block text-lg text-red-500 ${
                       currentMarkdown.id === markdown.id && 'text-green-500'
                     }`}

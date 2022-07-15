@@ -1,22 +1,11 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext } from 'react';
 import ReactMarkdown from 'react-markdown';
 
-// Firebase
-import {
-  doc,
-  collection,
-  Timestamp,
-  updateDoc,
-  getDoc,
-  deleteDoc,
-  setDoc,
-  ref,
-} from 'firebase/firestore';
-import { db } from '../firebase/firebase-config';
 import {
   addNewMarkdown,
   deleteMarkdown,
   updateTitle,
+  saveMarkdownChanges,
 } from '../firebase/firebase-utils';
 
 // Components
@@ -28,27 +17,8 @@ import { UserContext } from '../contexts/UserContext';
 export default function Markdown({ currentMarkdown }) {
   const { currentUser } = useContext(UserContext);
 
-  const [text, setText] = useState(currentMarkdown.content);
   const [title, setTitle] = useState(currentMarkdown.title);
-
-  // console.log(currentMarkdown.id);
-
-  // const saveMarkdownChanges = async (id) => {
-  //   try {
-  //     const userDoc = doc(db, 'posts', id);
-  //     await setDoc(
-  //       userDoc,
-  //       {
-  //         text,
-  //         createdAt: Timestamp.fromDate(new Date()),
-  //       },
-  //       { merge: true }
-  //     );
-  //     window.location.reload();
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+  const [content, setContent] = useState(currentMarkdown.content);
 
   return (
     <>
@@ -61,7 +31,9 @@ export default function Markdown({ currentMarkdown }) {
         </button>
         <button
           className="border border-orange-900"
-          onClick={() => saveMarkdownChanges(ID)}
+          onClick={() =>
+            saveMarkdownChanges(currentUser.uid, currentMarkdown.id, content)
+          }
         >
           Save Changes
         </button>
@@ -95,15 +67,17 @@ export default function Markdown({ currentMarkdown }) {
 
         <textarea
           className="w-1/2 font-roboto-mono"
-          value={text ? text : currentMarkdown.text}
-          onChange={(e) => setText(e.target.value)}
+          value={content ? content : currentMarkdown.content}
+          onChange={(e) => setContent(e.target.value)}
         />
       </div>
 
       <div>
         <p>Preview</p>
         <MarkdownPreview>
-          <ReactMarkdown>{text ? text : currentMarkdown.text}</ReactMarkdown>
+          <ReactMarkdown>
+            {content ? content : currentMarkdown.content}
+          </ReactMarkdown>
         </MarkdownPreview>
       </div>
     </>

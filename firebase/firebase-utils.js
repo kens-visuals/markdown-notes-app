@@ -36,7 +36,7 @@ export const createUserDocFromAuth = async (userAuth) => {
       });
 
       await addDoc(usersCollectionRef, {
-        title: 'untitled.md',
+        title: 'untitled-markdown.md',
         content: '',
         createdAt,
       });
@@ -112,6 +112,21 @@ export const updateTitle = async (e, uid, id, title) => {
     const createdAt = serverTimestamp();
 
     await updateDoc(markdownRef, { title, createdAt });
+
+    // FIXME: Change title without reloading page
+    window.location.reload();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const saveMarkdownChanges = async (uid, id, content) => {
+  try {
+    const usersCollectionRef = collection(db, 'users', `${uid}`, 'markdowns');
+    const markdownRef = doc(usersCollectionRef, id);
+    const createdAt = serverTimestamp();
+
+    await updateDoc(markdownRef, { content, createdAt });
 
     // FIXME: Change title without reloading page
     window.location.reload();
