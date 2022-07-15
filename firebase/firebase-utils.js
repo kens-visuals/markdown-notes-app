@@ -9,7 +9,7 @@ import {
   addDoc,
   serverTimestamp,
   deleteDoc,
-  ref,
+  updateDoc,
   getDocs,
 } from 'firebase/firestore';
 import { onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
@@ -72,7 +72,7 @@ export const onAuthStateChangedListener = (callback) =>
 export const getUserMarkdowns = (callback, uid) => {
   const usersCollectionRef = collection(db, 'users', `${uid}`, 'markdowns');
 
-  const q = query(usersCollectionRef, orderBy('createdAt'));
+  const q = query(usersCollectionRef, orderBy('createdAt', 'desc'));
 
   return onSnapshot(q, callback);
 };
@@ -103,16 +103,19 @@ export const deleteMarkdown = async (uid, id) => {
   }
 };
 
-// FIXME:
-// export const updateTitle = async (e, uid) => {
-//   e.preventDefault();
+export const updateTitle = async (e, uid, id, title) => {
+  e.preventDefault();
 
-//   const usersCollectionRef = collection(db, 'users', `${uid}`, 'markdowns');
+  try {
+    const usersCollectionRef = collection(db, 'users', `${uid}`, 'markdowns');
+    const markdownRef = doc(usersCollectionRef, id);
+    const createdAt = serverTimestamp();
 
-//   try {
-//     const userDoc = doc(db, 'posts', uid);
-//     await updateDoc(userDoc, { title });
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
+    await updateDoc(markdownRef, { title, createdAt });
+
+    // FIXME: Change title without reloading page
+    window.location.reload();
+  } catch (error) {
+    console.error(error);
+  }
+};

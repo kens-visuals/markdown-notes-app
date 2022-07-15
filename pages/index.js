@@ -49,8 +49,7 @@ export default function Home() {
                   <button
                     key={idx} // FIXME: Change to key={markdown.id}
                     className={`block text-lg text-red-500 ${
-                      currentMarkdown.title === markdown.title &&
-                      'text-green-500'
+                      currentMarkdown.id === markdown.id && 'text-green-500'
                     }`}
                     onClick={() => setCurrentMarkdown(data[idx])}
                   >

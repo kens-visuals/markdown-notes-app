@@ -13,7 +13,11 @@ import {
   ref,
 } from 'firebase/firestore';
 import { db } from '../firebase/firebase-config';
-import { addNewMarkdown, deleteMarkdown } from '../firebase/firebase-utils';
+import {
+  addNewMarkdown,
+  deleteMarkdown,
+  updateTitle,
+} from '../firebase/firebase-utils';
 
 // Components
 import MarkdownPreview from './MarkdownPreview';
@@ -46,41 +50,6 @@ export default function Markdown({ currentMarkdown }) {
   //   }
   // };
 
-  // const deleteMarkdown = async (id) => {
-  //   try {
-  //     const userDoc = doc(db, 'markdowns', id);
-  //     await deleteDoc(userDoc);
-
-  //     // DEL
-  //     // window.location.reload();
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
-  // const updateTitle = async (e, id) => {
-  //   e.preventDefault();
-  //   try {
-  //     const userDoc = doc(db, 'posts', id);
-  //     await updateDoc(userDoc, { title });
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
-  //   useEffect(() => {
-  //     const getCurrentMarkdown = async () => {
-  //       if (ID) {
-  //         const currentMarkdoown = doc(db, 'posts', ID);
-  //         const data = await getDoc(currentMarkdoown);
-
-  //         setSingleMarkdown({ ...data.data(), id: data.id });
-  //       }
-  //     };
-
-  //     getCurrentMarkdown();
-  //   }, [ID]);
-
   return (
     <>
       <div>
@@ -107,7 +76,12 @@ export default function Markdown({ currentMarkdown }) {
       <div>
         <p>Title</p>
 
-        <form action="#" onSubmit={(e) => updateTitle(e, ID)}>
+        <form
+          action="#"
+          onSubmit={(e) =>
+            updateTitle(e, currentUser.uid, currentMarkdown.id, title)
+          }
+        >
           <input
             type="text"
             value={title ? title : currentMarkdown.title}
