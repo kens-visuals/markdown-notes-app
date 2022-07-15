@@ -1,4 +1,11 @@
-import { useContext, createContext, useState } from 'react';
+import { createContext, useState, useEffect, useContext } from 'react';
+
+import { UserContext } from './UserContext';
+
+// Firebase
+import { getUserMarkdowns } from '../firebase/firebase-utils';
+
+import DATA from '../data.json';
 
 export const DataContext = createContext({
   data: [],
@@ -6,8 +13,20 @@ export const DataContext = createContext({
 });
 
 export function DataProvider({ children }) {
-  const [data, setData] = useState(value);
+  const { currentUser } = useContext(UserContext);
+  const [data, setData] = useState(DATA);
   const value = { data, setData };
+
+  useEffect(() => {
+    const callback = (data) =>
+      setData(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+
+    const unsub = getUserMarkdowns(callback, currentUser?.uid);
+
+    return () => unsub();
+  }, [currentUser?.uid]);
+
+  // console.log(data);
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 }

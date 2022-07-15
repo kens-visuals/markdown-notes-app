@@ -8,28 +8,19 @@ import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
 import Head from 'next/head';
 import Image from 'next/image';
 
-// components
+// Context
+import { DataContext } from '../contexts/DataContext';
+
+// Components
 import Login from '../components/Login';
 import Markdown from '../components/Markdown';
 import ThemeToggler from '../components/ThemeToggler';
 
 export default function Home() {
   const { currentUser } = useContext(UserContext);
+  const { data } = useContext(DataContext);
 
-  const [markdowns, setMarkdowns] = useState([]);
-
-  const [ID, setID] = useState(null);
-
-  const postsCollectionRef = collection(db, 'posts');
-  const q = query(postsCollectionRef, orderBy('createdAt'));
-
-  useEffect(() => {
-    onSnapshot(q, (data) => {
-      setMarkdowns(
-        data.docs.reverse().map((doc) => ({ ...doc.data(), id: doc.id }))
-      );
-    });
-  }, [ID]);
+  const [currentMarkdown, setCurrentMarkdown] = useState([]);
 
   return (
     <div>
@@ -53,20 +44,22 @@ export default function Home() {
 
           <main className="flex ">
             <div>
-              {markdowns &&
-                markdowns.map((markdown) => (
-                  <p
-                    key={markdown.id}
-                    className={`text-lg text-red-500 ${
-                      ID === markdown.id && 'text-green-500'
+              {data &&
+                data.map((markdown, idx) => (
+                  <button
+                    key={idx} // FIXME: Change to key={markdown.id}
+                    className={`block text-lg text-red-500 ${
+                      currentMarkdown.title === markdown.title &&
+                      'text-green-500'
                     }`}
-                    onClick={() => setID(markdown.id)}
+                    onClick={() => setCurrentMarkdown(data[idx])}
                   >
                     {markdown.title}
-                  </p>
+                  </button>
                 ))}
             </div>
-            <Markdown ID={ID} />
+
+            <Markdown currentMarkdown={currentMarkdown} />
           </main>
         </>
       )}

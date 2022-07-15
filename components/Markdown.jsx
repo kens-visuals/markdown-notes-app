@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import ReactMarkdown from 'react-markdown';
 
 // Firebase
 import {
@@ -12,27 +13,21 @@ import {
   setDoc,
 } from 'firebase/firestore';
 import { db } from '../firebase/firebase-config';
+import { addNewMarkdown, deleteMarkdown } from '../firebase/firebase-utils';
 
-import ReactMarkdown from 'react-markdown';
+// Components
 import MarkdownPreview from './MarkdownPreview';
 
-export default function Markdown({ ID }) {
-  const [singleMarkdown, setSingleMarkdown] = useState({});
-  const [text, setText] = useState('');
-  const [title, setTitle] = useState('');
-  const postsCollectionRef = collection(db, 'posts');
+// Contexts
+import { UserContext } from '../contexts/UserContext';
 
-  const addNewMarkdown = async () => {
-    try {
-      await addDoc(postsCollectionRef, {
-        text: '',
-        title: 'untitled.md',
-        createdAt: Timestamp.fromDate(new Date()),
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  };
+export default function Markdown({ currentMarkdown }) {
+  const { currentUser } = useContext(UserContext);
+
+  const [text, setText] = useState(currentMarkdown.content);
+  const [title, setTitle] = useState(currentMarkdown.title);
+
+  // console.log(currentMarkdown);
 
   const saveMarkdownChanges = async (id) => {
     try {
@@ -51,16 +46,16 @@ export default function Markdown({ ID }) {
     }
   };
 
-  const deleteMarkdown = async (id) => {
-    try {
-      const userDoc = doc(db, 'posts', id);
-      await deleteDoc(userDoc);
+  // const deleteMarkdown = async (id) => {
+  //   try {
+  //     const userDoc = doc(db, 'posts', id);
+  //     await deleteDoc(userDoc);
 
-      window.location.reload();
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  //     window.location.reload();
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   const updateTitle = async (e, id) => {
     e.preventDefault();
@@ -72,23 +67,26 @@ export default function Markdown({ ID }) {
     }
   };
 
-  useEffect(() => {
-    const getCurrentMarkdown = async () => {
-      if (ID) {
-        const currentMarkdoown = doc(db, 'posts', ID);
-        const data = await getDoc(currentMarkdoown);
+  //   useEffect(() => {
+  //     const getCurrentMarkdown = async () => {
+  //       if (ID) {
+  //         const currentMarkdoown = doc(db, 'posts', ID);
+  //         const data = await getDoc(currentMarkdoown);
 
-        setSingleMarkdown({ ...data.data(), id: data.id });
-      }
-    };
+  //         setSingleMarkdown({ ...data.data(), id: data.id });
+  //       }
+  //     };
 
-    getCurrentMarkdown();
-  }, [ID]);
+  //     getCurrentMarkdown();
+  //   }, [ID]);
 
   return (
     <>
       <div>
-        <button className="border border-orange-500" onClick={addNewMarkdown}>
+        <button
+          className="border border-orange-500"
+          onClick={() => addNewMarkdown(currentUser.uid)}
+        >
           + New Document
         </button>
         <button
@@ -99,7 +97,7 @@ export default function Markdown({ ID }) {
         </button>
         <button
           className="border border-orange-900"
-          onClick={() => deleteMarkdown(ID)}
+          onClick={() => deleteMarkdown(currentUser.uid, currentMarkdown.id)}
         >
           Delete
         </button>
@@ -107,10 +105,11 @@ export default function Markdown({ ID }) {
 
       <div>
         <p>Title</p>
+
         <form action="#" onSubmit={(e) => updateTitle(e, ID)}>
           <input
             type="text"
-            value={title ? title : singleMarkdown.title}
+            value={title ? title : currentMarkdown.title}
             onChange={(e) => setTitle(e.target.value)}
           />
         </form>
@@ -118,9 +117,10 @@ export default function Markdown({ ID }) {
 
       <div>
         <p>Editor</p>
+
         <textarea
           className="w-1/2 font-roboto-mono"
-          value={text ? text : singleMarkdown.text}
+          value={text ? text : currentMarkdown.text}
           onChange={(e) => setText(e.target.value)}
         />
       </div>
@@ -128,7 +128,7 @@ export default function Markdown({ ID }) {
       <div>
         <p>Preview</p>
         <MarkdownPreview>
-          <ReactMarkdown>{text ? text : singleMarkdown.text}</ReactMarkdown>
+          <ReactMarkdown>{text ? text : currentMarkdown.text}</ReactMarkdown>
         </MarkdownPreview>
       </div>
     </>

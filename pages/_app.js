@@ -1,5 +1,7 @@
+// Context Providers
 import { ThemeProvider } from 'next-themes';
 import { UserProvider } from '../contexts/UserContext';
+import { DataProvider } from '../contexts/DataContext';
 
 import '../styles/globals.css';
 
@@ -12,7 +14,9 @@ function MyApp({ Component, pageProps }) {
       attribute="class"
     >
       <UserProvider>
-        <Component {...pageProps} />
+        <DataProvider>
+          <Component {...pageProps} />
+        </DataProvider>
       </UserProvider>
     </ThemeProvider>
   );

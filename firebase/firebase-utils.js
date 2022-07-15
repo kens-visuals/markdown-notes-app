@@ -1,4 +1,15 @@
-import { doc, getDoc, setDoc, Timestamp } from 'firebase/firestore';
+import {
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  onSnapshot,
+  query,
+  orderBy,
+  addDoc,
+  serverTimestamp,
+  deleteDoc,
+} from 'firebase/firestore';
 import { onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
 import { db, auth, googleProvider } from './firebase-config';
 
@@ -6,17 +17,25 @@ export const createUserDocFromAuth = async (userAuth) => {
   if (!userAuth) return;
 
   const userDocRef = doc(db, 'users', userAuth.uid);
+  const usersCollectionRef = collection(db, 'users', userAuth.uid, 'markdowns');
 
   const userSnapshot = await getDoc(userDocRef);
 
   if (!userSnapshot.exists()) {
-    const { displayName, email } = userAuth;
-    const createdAt = Timestamp.fromDate(new Date());
+    const { displayName, email, uid } = userAuth;
+    const createdAt = serverTimestamp();
 
     try {
       await setDoc(userDocRef, {
-        displayName,
         email,
+        id: uid,
+        createdAt,
+        displayName,
+      });
+
+      await addDoc(usersCollectionRef, {
+        title: 'untitled.md',
+        content: '',
         createdAt,
       });
     } catch (error) {
@@ -47,3 +66,56 @@ export const signUserOut = async () => {
 
 export const onAuthStateChangedListener = (callback) =>
   onAuthStateChanged(auth, callback);
+
+export const getUserMarkdowns = (callback, uid) => {
+  const usersCollectionRef = collection(db, 'users', `${uid}`, 'markdowns');
+
+  // NOTE: uncomment later
+  // const q = query(usersCollectionRef, orderBy('createdAt'));
+
+  return onSnapshot(usersCollectionRef, callback);
+};
+
+export const addNewMarkdown = async (uid) => {
+  const usersCollectionRef = collection(db, 'users', `${uid}`, 'markdowns');
+  const createdAt = serverTimestamp();
+
+  try {
+    await addDoc(usersCollectionRef, {
+      text: '',
+      title: 'untitled-markdown.md',
+      createdAt,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const deleteMarkdown = async (uid, id) => {
+  try {
+    // const userDoc = doc(db, 'posts', uid);
+    const usersCollectionRef = collection(db, 'users', `${uid}`, 'markdowns');
+    const markdownDoc = doc(usersCollectionRef, id);
+    console.log(usersCollectionRef);
+
+    // await deleteDoc(usersCollectionRef);
+
+    window.location.reload();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// FIXME:
+// export const updateTitle = async (e, uid) => {
+//   e.preventDefault();
+
+//   const usersCollectionRef = collection(db, 'users', `${uid}`, 'markdowns');
+
+//   try {
+//     const userDoc = doc(db, 'posts', uid);
+//     await updateDoc(userDoc, { title });
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
