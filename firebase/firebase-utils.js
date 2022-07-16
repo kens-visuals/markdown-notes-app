@@ -10,10 +10,12 @@ import {
   serverTimestamp,
   deleteDoc,
   updateDoc,
-  getDocs,
 } from 'firebase/firestore';
 import { onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
-import { db, auth, googleProvider } from './firebase-config';
+import { db, auth, googleProvider, batch } from './firebase-config';
+
+import DATA from '../data.json';
+import { async } from '@firebase/util';
 
 export const createUserDocFromAuth = async (userAuth) => {
   if (!userAuth) return;
@@ -28,6 +30,7 @@ export const createUserDocFromAuth = async (userAuth) => {
     const createdAt = serverTimestamp();
 
     try {
+      // Create user doc
       await setDoc(userDocRef, {
         email,
         id: uid,
@@ -35,10 +38,13 @@ export const createUserDocFromAuth = async (userAuth) => {
         displayName,
       });
 
-      await addDoc(usersCollectionRef, {
-        title: 'untitled-markdown.md',
-        content: '',
-        createdAt,
+      // Add the default markdown and an empty file from data.json
+      DATA.map(async (el) => {
+        await addDoc(usersCollectionRef, {
+          title: el.title,
+          content: el.content,
+          createdAt,
+        });
       });
     } catch (error) {
       console.error(error);
