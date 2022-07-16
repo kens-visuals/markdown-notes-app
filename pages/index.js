@@ -11,6 +11,7 @@ import { DataContext } from '../contexts/DataContext';
 import Login from '../components/Login';
 import Markdown from '../components/Markdown';
 import ThemeToggler from '../components/ThemeToggler';
+import Navbar from '../components/Navbar';
 
 export default function Home() {
   const { currentUser } = useContext(UserContext);
@@ -26,11 +27,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <Navbar currentMarkdown={currentMarkdown} />
+
       <ThemeToggler />
 
       <Login />
 
-      {currentUser && (
+      {/* {currentUser && (
         <>
           <div>
             <h1>{currentUser.displayName}</h1>
@@ -57,7 +60,7 @@ export default function Home() {
             <Markdown currentMarkdown={currentMarkdown} />
           </main>
         </>
-      )}
+      )} */}
     </div>
   );
 }

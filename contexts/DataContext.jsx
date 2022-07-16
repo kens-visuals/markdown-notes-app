@@ -5,8 +5,6 @@ import { UserContext } from './UserContext';
 // Firebase
 import { getUserMarkdowns } from '../firebase/firebase-utils';
 
-import DATA from '../data.json';
-
 export const DataContext = createContext({
   data: [],
   setData: () => null,

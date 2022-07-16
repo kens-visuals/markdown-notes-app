@@ -13,11 +13,11 @@ export default function Login() {
     <div>
       {!currentUser ? (
         <button className="bg-red-500" onClick={signInWithGoogle}>
-          Sign in with Google
+          Log in with Google
         </button>
       ) : (
         <button className="bg-green-500" onClick={signUserOut}>
-          Sign out
+          Log out
         </button>
       )}
     </div>

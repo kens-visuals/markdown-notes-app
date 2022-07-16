@@ -12,10 +12,9 @@ import {
   updateDoc,
 } from 'firebase/firestore';
 import { onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
-import { db, auth, googleProvider, batch } from './firebase-config';
+import { db, auth, googleProvider } from './firebase-config';
 
 import DATA from '../data.json';
-import { async } from '@firebase/util';
 
 export const createUserDocFromAuth = async (userAuth) => {
   if (!userAuth) return;
