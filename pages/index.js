@@ -31,7 +31,8 @@ export default function Home() {
 
       <ThemeToggler />
 
-      <Login />
+      {/* DEL */}
+      {/* <Login /> */}
 
       {/* {currentUser && (
         <>
