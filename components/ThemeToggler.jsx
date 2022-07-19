@@ -15,8 +15,12 @@ export default function ThemeToggler() {
 
   return (
     <div>
-      <button onClick={() => setTheme('light')}>Light Mode</button>{' '}
-      <button onClick={() => setTheme('dark')}>Dark Mode</button>
+      <button type="button" onClick={() => setTheme('light')}>
+        Light Mode
+      </button>{' '}
+      <button type="button" onClick={() => setTheme('dark')}>
+        Dark Mode
+      </button>
     </div>
   );
 }

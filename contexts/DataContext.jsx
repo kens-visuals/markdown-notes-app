@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useContext } from 'react';
+import { createContext, useState, useEffect, useContext, useMemo } from 'react';
 
 import { UserContext } from './UserContext';
 
@@ -13,11 +13,11 @@ export const DataContext = createContext({
 export function DataProvider({ children }) {
   const { currentUser } = useContext(UserContext);
   const [data, setData] = useState([]);
-  const value = { data, setData };
+  const value = useMemo(() => ({ data, setData }), [data]);
 
   useEffect(() => {
-    const callback = (data) =>
-      setData(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    const callback = (d) =>
+      setData(d.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
 
     const unsub = getUserMarkdowns(callback, currentUser?.uid);
 

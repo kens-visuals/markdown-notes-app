@@ -18,6 +18,7 @@ export default function Login() {
     <div>
       {!currentUser ? (
         <button
+          type="button"
           className="flex items-center justify-center gap-2 rounded bg-orange-primary p-2"
           onClick={signInWithGoogle}
         >
@@ -32,6 +33,7 @@ export default function Login() {
         </button>
       ) : (
         <button
+          type="button"
           className="flex items-center justify-center rounded bg-orange-secondary p-2"
           onClick={signUserOut}
         >

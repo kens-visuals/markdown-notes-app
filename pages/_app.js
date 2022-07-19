@@ -8,9 +8,9 @@ import '../styles/globals.css';
 function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider
-      enableSystem={true}
+      enableSystem
+      enableColorScheme
       defaultTheme="system"
-      enableColorScheme={true}
       attribute="class"
     >
       <UserProvider>

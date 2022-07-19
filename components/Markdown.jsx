@@ -24,12 +24,14 @@ export default function Markdown({ currentMarkdown }) {
     <>
       <div>
         <button
+          type="button"
           className="border border-orange-500"
           onClick={() => addNewMarkdown(currentUser.uid)}
         >
           + New Document
         </button>
         <button
+          type="button"
           className="border border-orange-900"
           onClick={() =>
             saveMarkdownChanges(currentUser.uid, currentMarkdown.id, content)
@@ -38,6 +40,7 @@ export default function Markdown({ currentMarkdown }) {
           Save Changes
         </button>
         <button
+          type="button"
           className="border border-orange-900"
           onClick={() => deleteMarkdown(currentUser.uid, currentMarkdown.id)}
         >
@@ -56,7 +59,7 @@ export default function Markdown({ currentMarkdown }) {
         >
           <input
             type="text"
-            value={title ? title : currentMarkdown.title}
+            value={title || currentMarkdown.title}
             onChange={(e) => setTitle(e.target.value)}
           />
         </form>
@@ -67,7 +70,7 @@ export default function Markdown({ currentMarkdown }) {
 
         <textarea
           className="w-1/2 font-roboto-mono"
-          value={content ? content : currentMarkdown.content}
+          value={content || currentMarkdown.content}
           onChange={(e) => setContent(e.target.value)}
         />
       </div>
@@ -75,9 +78,7 @@ export default function Markdown({ currentMarkdown }) {
       <div>
         <p>Preview</p>
         <MarkdownPreview>
-          <ReactMarkdown>
-            {content ? content : currentMarkdown.content}
-          </ReactMarkdown>
+          <ReactMarkdown>{content || currentMarkdown.content}</ReactMarkdown>
         </MarkdownPreview>
       </div>
     </>

@@ -50,6 +50,7 @@ export const createUserDocFromAuth = async (userAuth) => {
     }
   }
 
+  // eslint-disable-next-line consistent-return
   return userDocRef;
 };
 

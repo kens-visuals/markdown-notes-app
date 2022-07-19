@@ -1,6 +1,9 @@
 import { useState, useContext } from 'react';
 import Image from 'next/image';
 
+// Firebase utils
+import { updateTitle } from '../firebase/firebase-utils';
+
 // Contexts
 import { UserContext } from '../contexts/UserContext';
 
@@ -12,7 +15,6 @@ import hamburgerIcon from '../assets/icon-menu.svg';
 import fileIcon from '../assets/icon-document.svg';
 import saveIcon from '../assets/icon-save.svg';
 import deleteIcon from '../assets/icon-delete.svg';
-import loginIcon from '../assets/icon-login.svg';
 
 export default function Navbar({ currentMarkdown }) {
   const { currentUser } = useContext(UserContext);
@@ -20,8 +22,8 @@ export default function Navbar({ currentMarkdown }) {
   const [title, setTitle] = useState(currentMarkdown.title);
 
   return (
-    <div className="flex justify-between  bg-primary-800">
-      <div className="flex justify-center gap-6">
+    <div className="flex justify-between bg-primary-800">
+      <div className="flex justify-center gap-4">
         <div className="flex items-center justify-center  bg-primary-700 p-4">
           <Image
             src={hamburgerIcon}
@@ -51,7 +53,7 @@ export default function Navbar({ currentMarkdown }) {
             >
               <input
                 type="text"
-                value={title ? title : currentMarkdown.title}
+                value={title || currentMarkdown.title}
                 onChange={(e) => setTitle(e.target.value)}
                 className="w-9/12 border-b border-transparent bg-transparent transition-[border] duration-300 focus-visible:border-b focus-visible:border-b-white focus-visible:outline-none"
               />
