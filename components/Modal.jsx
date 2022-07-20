@@ -1,12 +1,18 @@
+import { useContext } from 'react';
 // Firebase utils
 import { deleteMarkdown } from '../firebase/firebase-utils';
+
+// Contexts
+import { DataContext } from '../contexts/DataContext';
 
 export default function Modal({
   currentUser,
   isModalOpen,
   setIsModalOpen,
   currentMarkdown,
+  setCurrentMarkdown,
 }) {
+  const { data } = useContext(DataContext);
   return (
     <div
       id="popup-modal"
@@ -56,6 +62,7 @@ export default function Modal({
               onClick={() => {
                 setIsModalOpen(false);
                 deleteMarkdown(currentUser.uid, currentMarkdown.id);
+                setCurrentMarkdown(data.at(1));
               }}
             >
               Confirm & Delete

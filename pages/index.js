@@ -9,6 +9,8 @@ export default function Home() {
   const [currentMarkdown, setCurrentMarkdown] = useState([]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+  console.log(currentMarkdown);
+
   return (
     <div>
       <Head>

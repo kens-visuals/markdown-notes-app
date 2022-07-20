@@ -19,6 +19,7 @@ export default function MainContainer({
         isSidebarOpen={isSidebarOpen}
         currentMarkdown={currentMarkdown}
         setIsSidebarOpen={setIsSidebarOpen}
+        setCurrentMarkdown={setCurrentMarkdown}
       />
 
       <main className="w-full ">

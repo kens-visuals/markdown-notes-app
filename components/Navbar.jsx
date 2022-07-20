@@ -23,6 +23,7 @@ export default function Navbar({
   isSidebarOpen,
   currentMarkdown,
   setIsSidebarOpen,
+  setCurrentMarkdown,
 }) {
   const { currentUser } = useContext(UserContext);
 
@@ -37,6 +38,7 @@ export default function Navbar({
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
           currentMarkdown={currentMarkdown}
+          setCurrentMarkdown={setCurrentMarkdown}
         />
       )}
 
