@@ -34,13 +34,15 @@ export default function Sidebar({ currentMarkdown, setCurrentMarkdown }) {
           My Documents
         </span>
 
-        <button
-          type="button"
-          className="w-full rounded bg-orange-primary p-3 text-center text-white"
-          onClick={() => addNewMarkdown(currentUser.uid)}
-        >
-          + New Document
-        </button>
+        {currentUser && (
+          <button
+            type="button"
+            className="w-full rounded bg-orange-primary p-3 text-center text-white"
+            onClick={() => addNewMarkdown(currentUser.uid)}
+          >
+            + New Document
+          </button>
+        )}
 
         <ul className="mt-7 space-y-3">
           <MarkdownListItem

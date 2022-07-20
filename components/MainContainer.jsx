@@ -13,7 +13,7 @@ export default function MainContainer({
   const [content, setContent] = useState('');
 
   return (
-    <div className="min-h-screen w-full flex-shrink-0 bg-white dark:bg-primary-1000">
+    <div className="min-h-screen w-full flex-shrink-0 bg-white dark:bg-primary-1000 md:flex-shrink">
       <Navbar
         content={content}
         isSidebarOpen={isSidebarOpen}

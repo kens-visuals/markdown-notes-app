@@ -27,7 +27,7 @@ export default function Navbar({
 }) {
   const { currentUser } = useContext(UserContext);
 
-  const [title, setTitle] = useState(currentMarkdown.title);
+  const [title, setTitle] = useState(currentMarkdown.title || '');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -68,32 +68,30 @@ export default function Navbar({
             )}
           </button>
 
-          {currentUser && (
-            <div className="flex items-center gap-2">
-              <Image
-                src={fileIcon}
-                alt="file"
-                width={16}
-                height={18}
-                layout="fixed"
-              />
+          <div className="flex items-center gap-2">
+            <Image
+              src={fileIcon}
+              alt="file"
+              width={16}
+              height={18}
+              layout="fixed"
+            />
 
-              <form
-                action="#"
-                onSubmit={(e) =>
-                  updateTitle(e, currentUser.uid, currentMarkdown.id, title)
-                }
-                className="w-full"
-              >
-                <input
-                  type="text"
-                  value={title || currentMarkdown.title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  className="w-9/12 border-b border-transparent bg-transparent text-white transition-[border] duration-300 focus-visible:border-b focus-visible:border-b-white focus-visible:outline-none"
-                />
-              </form>
-            </div>
-          )}
+            <form
+              action="#"
+              onSubmit={(e) =>
+                updateTitle(e, currentUser.uid, currentMarkdown.id, title)
+              }
+              className="w-full"
+            >
+              <input
+                type="text"
+                value={title || currentMarkdown.title}
+                onChange={(e) => setTitle(e.target.value)}
+                className="w-9/12 border-b border-transparent bg-transparent text-white transition-[border] duration-300 focus-visible:border-b focus-visible:border-b-white focus-visible:outline-none"
+              />
+            </form>
+          </div>
         </div>
 
         <div className="flex items-center gap-3 p-2">
