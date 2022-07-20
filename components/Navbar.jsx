@@ -65,7 +65,7 @@ export default function Navbar({
               alt="file"
               width={16}
               height={18}
-              layout="intrinsic"
+              layout="fixed"
             />
 
             <form
@@ -94,13 +94,14 @@ export default function Navbar({
               onClick={() =>
                 deleteMarkdown(currentUser.uid, currentMarkdown.id)
               }
+              className="flex place-content-center p-1"
             >
               <Image
                 src={deleteIcon}
                 alt="delete"
-                width={27}
-                height={30}
-                layout="intrinsic"
+                width={17}
+                height={20}
+                layout="fixed"
               />
             </button>
 
@@ -113,14 +114,14 @@ export default function Navbar({
                   content
                 )
               }
-              className="flex items-center justify-center rounded bg-orange-primary p-3"
+              className="flex place-content-center rounded bg-orange-primary p-2.5"
             >
               <Image
                 src={saveIcon}
                 alt="save"
-                width={26}
-                height={26}
-                layout="intrinsic"
+                width={22}
+                height={22}
+                layout="fixed"
               />
             </button>
           </>

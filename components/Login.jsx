@@ -28,7 +28,7 @@ export default function Login() {
             alt="login"
             width={22}
             height={22}
-            layout="intrinsic"
+            layout="fixed"
           />
         </button>
       ) : (
@@ -40,9 +40,9 @@ export default function Login() {
           <Image
             src={logoutIcon}
             alt="logout"
-            width={50}
-            height={50}
-            layout="intrinsic"
+            width={26}
+            height={26}
+            layout="fixed"
           />
         </button>
       )}

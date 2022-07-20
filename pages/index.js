@@ -3,14 +3,16 @@ import { useState } from 'react';
 import Head from 'next/head';
 
 // Components
-import Markdown from '../components/Markdown';
+
 import Sidebar from '../components/Sidebar';
-import Navbar from '../components/Navbar';
+
+import MainContainer from '../components/MainContainer';
 
 export default function Home() {
   const [currentMarkdown, setCurrentMarkdown] = useState([]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [content, setContent] = useState('');
+
+  console.log('rerender');
 
   return (
     <div>
@@ -28,22 +30,12 @@ export default function Home() {
           />
         )}
 
-        <div className="w-full flex-shrink-0">
-          <Navbar
-            isSidebarOpen={isSidebarOpen}
-            currentMarkdown={currentMarkdown}
-            setIsSidebarOpen={setIsSidebarOpen}
-          />
-
-          <main className="w-full">
-            <Markdown
-              content={content}
-              setContent={setContent}
-              currentMarkdown={currentMarkdown}
-              setCurrentMarkdown={setCurrentMarkdown}
-            />
-          </main>
-        </div>
+        <MainContainer
+          isSidebarOpen={isSidebarOpen}
+          currentMarkdown={currentMarkdown}
+          setIsSidebarOpen={setIsSidebarOpen}
+          setCurrentMarkdown={setCurrentMarkdown}
+        />
       </div>
     </div>
   );

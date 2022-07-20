@@ -18,7 +18,7 @@ export default function Sidebar({ currentMarkdown, setCurrentMarkdown }) {
   const { currentUser } = useContext(UserContext);
 
   return (
-    <div className="flex min-h-screen w-64 flex-shrink-0 flex-col justify-between bg-primary-900 p-6">
+    <div className="flex min-h-screen w-64 flex-shrink-0 flex-col justify-between bg-primary-900 p-6 py-8">
       <div>
         <div className="flex w-full items-center">
           <Image

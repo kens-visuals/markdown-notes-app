@@ -30,7 +30,7 @@ export default function Markdown({ currentMarkdown, content, setContent }) {
         <p>Editor</p>
 
         <textarea
-          className="w-full font-roboto-mono"
+          className="w-full font-roboto-mono dark:bg-primary-1000"
           value={content || currentMarkdown.content}
           onChange={(e) => setContent(e.target.value)}
         />

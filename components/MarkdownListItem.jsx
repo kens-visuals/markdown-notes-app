@@ -39,7 +39,7 @@ export default function MarkdownListItem({
           </span>
           <span
             type="button"
-            className={`text-base text-white ${
+            className={`break-all text-base text-white ${
               currentMarkdown.id === markdown.id && 'text-orange-primary'
             }`}
           >

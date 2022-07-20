@@ -59,7 +59,6 @@ export const signInWithGoogle = async () => {
     await signInWithPopup(auth, googleProvider);
   } catch (err) {
     console.error(err);
-    alert(err.message);
   }
 };
 
@@ -68,7 +67,6 @@ export const signUserOut = async () => {
     await signOut(auth);
   } catch (err) {
     console.error(err);
-    alert(err.message);
   }
 };
 
