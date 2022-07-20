@@ -32,6 +32,9 @@ export default function ThemeToggler() {
         width={17}
         height={16}
         layout="intrinsic"
+        className={`transition-all duration-200 ${
+          theme === 'dark' ? 'opacity-100' : 'opacity-50'
+        }`}
       />
 
       <input
@@ -42,7 +45,7 @@ export default function ThemeToggler() {
         id="theme-toggle"
         className="peer sr-only"
       />
-      <div className="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:top-[2px] after:left-[35px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-blue-800" />
+      <div className="peer h-6 w-11 rounded-full bg-secondary-600 after:absolute after:top-[2px] after:left-[35px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all peer-checked:bg-secondary-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-orange-primary dark:border-gray-600 dark:bg-secondary-600 " />
 
       <Image
         src={sunIcon}
@@ -50,6 +53,9 @@ export default function ThemeToggler() {
         width={17}
         height={16}
         layout="intrinsic"
+        className={`transition-all duration-200 ${
+          theme === 'light' ? 'opacity-100' : 'opacity-50'
+        }`}
       />
     </label>
   );
