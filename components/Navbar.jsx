@@ -2,17 +2,14 @@ import { useState, useContext } from 'react';
 import Image from 'next/image';
 
 // Firebase utils
-import {
-  updateTitle,
-  deleteMarkdown,
-  saveMarkdownChanges,
-} from '../firebase/firebase-utils';
+import { updateTitle, saveMarkdownChanges } from '../firebase/firebase-utils';
 
 // Contexts
 import { UserContext } from '../contexts/UserContext';
 
 // Components
 import Login from './Login';
+import Modal from './Modal';
 
 // Assets
 import hamburgerIcon from '../assets/icon-menu.svg';
@@ -22,113 +19,123 @@ import saveIcon from '../assets/icon-save.svg';
 import deleteIcon from '../assets/icon-delete.svg';
 
 export default function Navbar({
-  currentMarkdown,
-  isSidebarOpen,
-  setIsSidebarOpen,
   content,
+  isSidebarOpen,
+  currentMarkdown,
+  setIsSidebarOpen,
 }) {
   const { currentUser } = useContext(UserContext);
 
   const [title, setTitle] = useState(currentMarkdown.title);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div className="flex h-max w-full flex-shrink-0 justify-between bg-primary-800">
-      <div className="flex justify-center gap-4">
-        <button
-          type="button"
-          className="flex items-center justify-center  bg-primary-700 p-4"
-          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-        >
-          {isSidebarOpen ? (
-            <Image
-              src={closeIcon}
-              alt="menu hamburger"
-              width={24}
-              height={24}
-              layout="fixed"
-            />
-          ) : (
-            <Image
-              src={hamburgerIcon}
-              alt="menu hamburger"
-              width={30}
-              height={18}
-              layout="fixed"
-            />
+    <>
+      {isModalOpen && (
+        <Modal
+          currentUser={currentUser}
+          isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+          currentMarkdown={currentMarkdown}
+        />
+      )}
+
+      <div className="flex h-max w-full flex-shrink-0 justify-between bg-primary-800">
+        <div className="flex justify-center gap-4">
+          <button
+            type="button"
+            className="flex items-center justify-center  bg-primary-700 p-4"
+            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+          >
+            {isSidebarOpen ? (
+              <Image
+                src={closeIcon}
+                alt="menu hamburger"
+                width={24}
+                height={24}
+                layout="fixed"
+              />
+            ) : (
+              <Image
+                src={hamburgerIcon}
+                alt="menu hamburger"
+                width={30}
+                height={18}
+                layout="fixed"
+              />
+            )}
+          </button>
+
+          {currentUser && (
+            <div className="flex items-center gap-2">
+              <Image
+                src={fileIcon}
+                alt="file"
+                width={16}
+                height={18}
+                layout="fixed"
+              />
+
+              <form
+                action="#"
+                onSubmit={(e) =>
+                  updateTitle(e, currentUser.uid, currentMarkdown.id, title)
+                }
+                className="w-full"
+              >
+                <input
+                  type="text"
+                  value={title || currentMarkdown.title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  className="w-9/12 border-b border-transparent bg-transparent text-white transition-[border] duration-300 focus-visible:border-b focus-visible:border-b-white focus-visible:outline-none"
+                />
+              </form>
+            </div>
           )}
-        </button>
+        </div>
 
-        {currentUser && (
-          <div className="flex items-center gap-2">
-            <Image
-              src={fileIcon}
-              alt="file"
-              width={16}
-              height={18}
-              layout="fixed"
-            />
+        <div className="flex items-center gap-3 p-2">
+          {currentUser && (
+            <>
+              <button
+                type="button"
+                onClick={() => setIsModalOpen(true)}
+                className="flex place-content-center p-1"
+              >
+                <Image
+                  src={deleteIcon}
+                  alt="delete"
+                  width={17}
+                  height={20}
+                  layout="fixed"
+                />
+              </button>
 
-            <form
-              action="#"
-              onSubmit={(e) =>
-                updateTitle(e, currentUser.uid, currentMarkdown.id, title)
-              }
-              className="w-full"
-            >
-              <input
-                type="text"
-                value={title || currentMarkdown.title}
-                onChange={(e) => setTitle(e.target.value)}
-                className="w-9/12 border-b border-transparent bg-transparent text-white transition-[border] duration-300 focus-visible:border-b focus-visible:border-b-white focus-visible:outline-none"
-              />
-            </form>
-          </div>
-        )}
+              <button
+                type="button"
+                onClick={() =>
+                  saveMarkdownChanges(
+                    currentUser.uid,
+                    currentMarkdown.id,
+                    content
+                  )
+                }
+                className="flex place-content-center rounded bg-orange-primary p-2.5"
+              >
+                <Image
+                  src={saveIcon}
+                  alt="save"
+                  width={22}
+                  height={22}
+                  layout="fixed"
+                />
+              </button>
+            </>
+          )}
+
+          <Login />
+        </div>
       </div>
-
-      <div className="flex items-center gap-3 p-2">
-        {currentUser && (
-          <>
-            <button
-              type="button"
-              onClick={() =>
-                deleteMarkdown(currentUser.uid, currentMarkdown.id)
-              }
-              className="flex place-content-center p-1"
-            >
-              <Image
-                src={deleteIcon}
-                alt="delete"
-                width={17}
-                height={20}
-                layout="fixed"
-              />
-            </button>
-
-            <button
-              type="button"
-              onClick={() =>
-                saveMarkdownChanges(
-                  currentUser.uid,
-                  currentMarkdown.id,
-                  content
-                )
-              }
-              className="flex place-content-center rounded bg-orange-primary p-2.5"
-            >
-              <Image
-                src={saveIcon}
-                alt="save"
-                width={22}
-                height={22}
-                layout="fixed"
-              />
-            </button>
-          </>
-        )}
-
-        <Login />
-      </div>
-    </div>
+    </>
   );
 }

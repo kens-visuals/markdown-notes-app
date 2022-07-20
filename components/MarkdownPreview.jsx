@@ -14,7 +14,7 @@ export default function MarkdownPreview({ children, setIsPreviewVisible }) {
         <button type="button" onClick={() => setIsPreviewVisible(false)}>
           <Image
             src={hideIcon}
-            alt="preview"
+            alt="hide"
             width={16}
             height={12}
             layout="fixed"
