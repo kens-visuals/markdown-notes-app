@@ -13,6 +13,7 @@ export const DataContext = createContext({
 export function DataProvider({ children }) {
   const { currentUser } = useContext(UserContext);
   const [data, setData] = useState([]);
+
   const value = useMemo(() => ({ data, setData }), [data]);
 
   useEffect(() => {

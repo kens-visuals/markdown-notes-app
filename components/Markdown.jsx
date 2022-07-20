@@ -1,12 +1,7 @@
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import ReactMarkdown from 'react-markdown';
 
-import {
-  addNewMarkdown,
-  deleteMarkdown,
-  updateTitle,
-  saveMarkdownChanges,
-} from '../firebase/firebase-utils';
+import { saveMarkdownChanges } from '../firebase/firebase-utils';
 
 // Components
 import MarkdownPreview from './MarkdownPreview';
@@ -14,22 +9,12 @@ import MarkdownPreview from './MarkdownPreview';
 // Contexts
 import { UserContext } from '../contexts/UserContext';
 
-export default function Markdown({ currentMarkdown }) {
+export default function Markdown({ currentMarkdown, content, setContent }) {
   const { currentUser } = useContext(UserContext);
-
-  const [title, setTitle] = useState(currentMarkdown.title);
-  const [content, setContent] = useState(currentMarkdown.content);
 
   return (
     <>
       <div>
-        <button
-          type="button"
-          className="border border-orange-500"
-          onClick={() => addNewMarkdown(currentUser.uid)}
-        >
-          + New Document
-        </button>
         <button
           type="button"
           className="border border-orange-900"
@@ -39,37 +24,13 @@ export default function Markdown({ currentMarkdown }) {
         >
           Save Changes
         </button>
-        <button
-          type="button"
-          className="border border-orange-900"
-          onClick={() => deleteMarkdown(currentUser.uid, currentMarkdown.id)}
-        >
-          Delete
-        </button>
-      </div>
-
-      <div>
-        <p>Title</p>
-
-        <form
-          action="#"
-          onSubmit={(e) =>
-            updateTitle(e, currentUser.uid, currentMarkdown.id, title)
-          }
-        >
-          <input
-            type="text"
-            value={title || currentMarkdown.title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </form>
       </div>
 
       <div>
         <p>Editor</p>
 
         <textarea
-          className="w-1/2 font-roboto-mono"
+          className="w-full font-roboto-mono"
           value={content || currentMarkdown.content}
           onChange={(e) => setContent(e.target.value)}
         />

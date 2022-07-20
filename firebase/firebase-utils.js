@@ -130,9 +130,8 @@ export const saveMarkdownChanges = async (uid, id, content) => {
   try {
     const usersCollectionRef = collection(db, 'users', `${uid}`, 'markdowns');
     const markdownRef = doc(usersCollectionRef, id);
-    const createdAt = serverTimestamp();
 
-    await updateDoc(markdownRef, { content, createdAt });
+    await updateDoc(markdownRef, { content });
 
     // FIXME: Change title without reloading page
     window.location.reload();

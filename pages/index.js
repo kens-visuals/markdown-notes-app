@@ -1,23 +1,16 @@
-import { useState, useContext } from 'react';
-import { UserContext } from '../contexts/UserContext';
+import { useState } from 'react';
 
 import Head from 'next/head';
-import Image from 'next/image';
-
-// Context
-import { DataContext } from '../contexts/DataContext';
 
 // Components
-import Login from '../components/Login';
 import Markdown from '../components/Markdown';
-import ThemeToggler from '../components/ThemeToggler';
+import Sidebar from '../components/Sidebar';
 import Navbar from '../components/Navbar';
 
 export default function Home() {
-  const { currentUser } = useContext(UserContext);
-  const { data } = useContext(DataContext);
-
   const [currentMarkdown, setCurrentMarkdown] = useState([]);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [content, setContent] = useState('');
 
   return (
     <div>
@@ -27,41 +20,31 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Navbar currentMarkdown={currentMarkdown} />
+      <div className="flex">
+        {isSidebarOpen && (
+          <Sidebar
+            currentMarkdown={currentMarkdown}
+            setCurrentMarkdown={setCurrentMarkdown}
+          />
+        )}
 
-      <ThemeToggler />
+        <div className="w-full flex-shrink-0">
+          <Navbar
+            isSidebarOpen={isSidebarOpen}
+            currentMarkdown={currentMarkdown}
+            setIsSidebarOpen={setIsSidebarOpen}
+          />
 
-      {/* DEL */}
-      {/* <Login /> */}
-
-      {/* {currentUser && (
-        <>
-          <div>
-            <h1>{currentUser.displayName}</h1>
-            <h1>{currentUser.email}</h1>
-            <img src={currentUser.photoURL} alt="" />
-          </div>
-
-          <main className="flex ">
-            <div>
-              {data &&
-                data.map((markdown, idx) => (
-                  <button
-                    key={markdown.id}
-                    className={`block text-lg text-red-500 ${
-                      currentMarkdown.id === markdown.id && 'text-green-500'
-                    }`}
-                    onClick={() => setCurrentMarkdown(data[idx])}
-                  >
-                    {markdown.title}
-                  </button>
-                ))}
-            </div>
-
-            <Markdown currentMarkdown={currentMarkdown} />
+          <main className="w-full">
+            <Markdown
+              content={content}
+              setContent={setContent}
+              currentMarkdown={currentMarkdown}
+              setCurrentMarkdown={setCurrentMarkdown}
+            />
           </main>
-        </>
-      )} */}
+        </div>
+      </div>
     </div>
   );
 }

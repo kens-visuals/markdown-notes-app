@@ -2,7 +2,11 @@ import { useState, useContext } from 'react';
 import Image from 'next/image';
 
 // Firebase utils
-import { updateTitle } from '../firebase/firebase-utils';
+import {
+  updateTitle,
+  deleteMarkdown,
+  saveMarkdownChanges,
+} from '../firebase/firebase-utils';
 
 // Contexts
 import { UserContext } from '../contexts/UserContext';
@@ -12,27 +16,47 @@ import Login from './Login';
 
 // Assets
 import hamburgerIcon from '../assets/icon-menu.svg';
+import closeIcon from '../assets/icon-close.svg';
 import fileIcon from '../assets/icon-document.svg';
 import saveIcon from '../assets/icon-save.svg';
 import deleteIcon from '../assets/icon-delete.svg';
 
-export default function Navbar({ currentMarkdown }) {
+export default function Navbar({
+  currentMarkdown,
+  isSidebarOpen,
+  setIsSidebarOpen,
+  content,
+}) {
   const { currentUser } = useContext(UserContext);
 
   const [title, setTitle] = useState(currentMarkdown.title);
 
   return (
-    <div className="flex justify-between bg-primary-800">
+    <div className="flex h-max w-full flex-shrink-0 justify-between bg-primary-800">
       <div className="flex justify-center gap-4">
-        <div className="flex items-center justify-center  bg-primary-700 p-4">
-          <Image
-            src={hamburgerIcon}
-            alt="menu hamburger"
-            width={30}
-            height={18}
-            layout="intrinsic"
-          />
-        </div>
+        <button
+          type="button"
+          className="flex items-center justify-center  bg-primary-700 p-4"
+          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+        >
+          {isSidebarOpen ? (
+            <Image
+              src={closeIcon}
+              alt="menu hamburger"
+              width={24}
+              height={24}
+              layout="fixed"
+            />
+          ) : (
+            <Image
+              src={hamburgerIcon}
+              alt="menu hamburger"
+              width={30}
+              height={18}
+              layout="fixed"
+            />
+          )}
+        </button>
 
         {currentUser && (
           <div className="flex items-center gap-2">
@@ -55,7 +79,7 @@ export default function Navbar({ currentMarkdown }) {
                 type="text"
                 value={title || currentMarkdown.title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="w-9/12 border-b border-transparent bg-transparent transition-[border] duration-300 focus-visible:border-b focus-visible:border-b-white focus-visible:outline-none"
+                className="w-9/12 border-b border-transparent bg-transparent text-white transition-[border] duration-300 focus-visible:border-b focus-visible:border-b-white focus-visible:outline-none"
               />
             </form>
           </div>
@@ -65,15 +89,32 @@ export default function Navbar({ currentMarkdown }) {
       <div className="flex items-center gap-3 p-2">
         {currentUser && (
           <>
-            <Image
-              src={deleteIcon}
-              alt="delete"
-              width={27}
-              height={30}
-              layout="intrinsic"
-            />
+            <button
+              type="button"
+              onClick={() =>
+                deleteMarkdown(currentUser.uid, currentMarkdown.id)
+              }
+            >
+              <Image
+                src={deleteIcon}
+                alt="delete"
+                width={27}
+                height={30}
+                layout="intrinsic"
+              />
+            </button>
 
-            <div className="flex items-center justify-center rounded bg-orange-primary p-3">
+            <button
+              type="button"
+              onClick={() =>
+                saveMarkdownChanges(
+                  currentUser.uid,
+                  currentMarkdown.id,
+                  content
+                )
+              }
+              className="flex items-center justify-center rounded bg-orange-primary p-3"
+            >
               <Image
                 src={saveIcon}
                 alt="save"
@@ -81,7 +122,7 @@ export default function Navbar({ currentMarkdown }) {
                 height={26}
                 layout="intrinsic"
               />
-            </div>
+            </button>
           </>
         )}
 
