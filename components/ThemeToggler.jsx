@@ -28,7 +28,7 @@ export default function ThemeToggler() {
     >
       <Image
         src={moonIcon}
-        alt="Markdown"
+        alt="dark mode"
         width={17}
         height={16}
         layout="intrinsic"
@@ -49,7 +49,7 @@ export default function ThemeToggler() {
 
       <Image
         src={sunIcon}
-        alt="Markdown"
+        alt="light mode"
         width={17}
         height={16}
         layout="intrinsic"

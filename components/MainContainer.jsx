@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 // Components
 import Navbar from './Navbar';
-import Markdown from './Markdown';
+import Markdown from './MarkdownContainer';
 
 export default function MainContainer({
   isSidebarOpen,
@@ -12,10 +12,8 @@ export default function MainContainer({
 }) {
   const [content, setContent] = useState('');
 
-  console.log('MainContainer rendered');
-
   return (
-    <div className="min-h-screen w-full flex-shrink-0 bg-white  dark:bg-primary-1000">
+    <div className="min-h-screen w-full flex-shrink-0 bg-white dark:bg-primary-1000">
       <Navbar
         content={content}
         isSidebarOpen={isSidebarOpen}
