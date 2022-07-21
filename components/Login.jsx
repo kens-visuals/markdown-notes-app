@@ -19,7 +19,7 @@ export default function Login() {
       {!currentUser ? (
         <button
           type="button"
-          className="flex w-36 items-center justify-center gap-2 rounded bg-orange-primary p-1 text-xs text-white"
+          className="flex w-36 items-center justify-center gap-2 rounded bg-orange-primary p-1 text-xs text-white md:w-max md:p-2 md:px-3 md:text-base"
           onClick={signInWithGoogle}
         >
           Login with Google
@@ -34,7 +34,7 @@ export default function Login() {
       ) : (
         <button
           type="button"
-          className="flex items-center justify-center rounded bg-orange-secondary p-2"
+          className="flex items-center justify-center rounded bg-orange-secondary p-2 md:gap-2"
           onClick={signUserOut}
         >
           <Image
@@ -44,6 +44,7 @@ export default function Login() {
             height={26}
             layout="fixed"
           />
+          <spa className="hidden md:inline-block">Log out</spa>
         </button>
       )}
     </div>

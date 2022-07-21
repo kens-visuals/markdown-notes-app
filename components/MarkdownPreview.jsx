@@ -5,7 +5,10 @@ import hideIcon from '../assets/icon-hide-preview.svg';
 
 export default function MarkdownPreview({ children, setIsPreviewVisible }) {
   return (
-    <label htmlFor="preview" className="w-full">
+    <label
+      htmlFor="preview"
+      className="w-full md:flex md:flex-col md:items-center md:justify-center"
+    >
       <div className="flex w-full items-center justify-between bg-tertiary-200 p-3.5 dark:bg-primary-900">
         <span className="font-roboto text-sm uppercase tracking-widest text-secondary-500 dark:text-secondary-400">
           Preview

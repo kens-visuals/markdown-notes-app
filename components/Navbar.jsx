@@ -68,7 +68,7 @@ export default function Navbar({
             )}
           </button>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 md:gap-4">
             <Image
               src={fileIcon}
               alt="file"
@@ -84,12 +84,18 @@ export default function Navbar({
               }
               className="w-full"
             >
-              <input
-                type="text"
-                value={title || currentMarkdown.title}
-                onChange={(e) => setTitle(e.target.value)}
-                className="w-9/12 border-b border-transparent bg-transparent text-white transition-[border] duration-300 focus-visible:border-b focus-visible:border-b-white focus-visible:outline-none"
-              />
+              <label htmlFor="title">
+                <span className="hidden font-roboto text-sm text-secondary-500 md:block">
+                  Document Name
+                </span>
+                <input
+                  id="title"
+                  type="text"
+                  value={title || currentMarkdown.title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  className="w-9/12 border-b border-transparent bg-transparent text-white transition-[border] duration-300 focus-visible:border-b focus-visible:border-b-white focus-visible:outline-none"
+                />
+              </label>
             </form>
           </div>
         </div>
@@ -120,7 +126,7 @@ export default function Navbar({
                     content
                   )
                 }
-                className="flex place-content-center rounded bg-orange-primary p-2.5"
+                className="flex place-content-center rounded bg-orange-primary p-2.5 md:gap-3"
               >
                 <Image
                   src={saveIcon}
@@ -129,6 +135,7 @@ export default function Navbar({
                   height={22}
                   layout="fixed"
                 />
+                <spa className="hidden md:inline-block">Save Changes</spa>
               </button>
             </>
           )}
