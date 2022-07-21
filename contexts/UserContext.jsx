@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect, useMemo } from 'react';
 
 import {
   onAuthStateChangedListener,
@@ -12,7 +12,7 @@ export const UserContext = createContext({
 
 export function UserProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
-  const value = { currentUser, setCurrentUser };
+  const value = useMemo(() => ({ currentUser, setCurrentUser }), [currentUser]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChangedListener((user) => {

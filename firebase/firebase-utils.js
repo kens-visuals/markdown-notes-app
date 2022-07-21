@@ -12,10 +12,9 @@ import {
   updateDoc,
 } from 'firebase/firestore';
 import { onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
-import { db, auth, googleProvider, batch } from './firebase-config';
+import { db, auth, googleProvider } from './firebase-config';
 
 import DATA from '../data.json';
-import { async } from '@firebase/util';
 
 export const createUserDocFromAuth = async (userAuth) => {
   if (!userAuth) return;
@@ -51,6 +50,7 @@ export const createUserDocFromAuth = async (userAuth) => {
     }
   }
 
+  // eslint-disable-next-line consistent-return
   return userDocRef;
 };
 
@@ -59,7 +59,6 @@ export const signInWithGoogle = async () => {
     await signInWithPopup(auth, googleProvider);
   } catch (err) {
     console.error(err);
-    alert(err.message);
   }
 };
 
@@ -68,7 +67,6 @@ export const signUserOut = async () => {
     await signOut(auth);
   } catch (err) {
     console.error(err);
-    alert(err.message);
   }
 };
 
@@ -130,9 +128,8 @@ export const saveMarkdownChanges = async (uid, id, content) => {
   try {
     const usersCollectionRef = collection(db, 'users', `${uid}`, 'markdowns');
     const markdownRef = doc(usersCollectionRef, id);
-    const createdAt = serverTimestamp();
 
-    await updateDoc(markdownRef, { content, createdAt });
+    await updateDoc(markdownRef, { content });
 
     // FIXME: Change title without reloading page
     window.location.reload();

@@ -23,5 +23,3 @@ export const googleProvider = new GoogleAuthProvider();
 // NOTE: uncomment later
 // let the user choose the account everytime they sign in
 // googleProvider.setCustomParameters({ prompt: 'select_account' });
-
-// Get a new write batch
