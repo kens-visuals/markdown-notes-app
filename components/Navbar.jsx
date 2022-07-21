@@ -126,16 +126,18 @@ export default function Navbar({
                     content
                   )
                 }
-                className="flex place-content-center rounded bg-orange-primary p-2.5 md:gap-3"
+                className="flex items-center justify-center rounded bg-orange-primary p-2.5 md:flex-wrap md:gap-3"
               >
                 <Image
                   src={saveIcon}
                   alt="save"
-                  width={22}
-                  height={22}
+                  width={20}
+                  height={20}
                   layout="fixed"
                 />
-                <spa className="hidden md:inline-block">Save Changes</spa>
+                <spa className="hidden text-white md:inline-block">
+                  Save Changes
+                </spa>
               </button>
             </>
           )}

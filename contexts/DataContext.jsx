@@ -1,10 +1,12 @@
 import { createContext, useState, useEffect, useContext, useMemo } from 'react';
 
+// Contexts
 import { UserContext } from './UserContext';
 
 // Firebase
 import { getUserMarkdowns } from '../firebase/firebase-utils';
 
+// Initial data
 import DATA from '../data.json';
 
 export const DataContext = createContext({

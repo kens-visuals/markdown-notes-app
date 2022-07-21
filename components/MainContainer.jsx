@@ -22,14 +22,12 @@ export default function MainContainer({
         setCurrentMarkdown={setCurrentMarkdown}
       />
 
-      <main className="w-full ">
-        <Markdown
-          content={content}
-          setContent={setContent}
-          currentMarkdown={currentMarkdown}
-          setCurrentMarkdown={setCurrentMarkdown}
-        />
-      </main>
+      <Markdown
+        content={content}
+        setContent={setContent}
+        currentMarkdown={currentMarkdown}
+        setCurrentMarkdown={setCurrentMarkdown}
+      />
     </div>
   );
 }

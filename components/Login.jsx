@@ -34,7 +34,7 @@ export default function Login() {
       ) : (
         <button
           type="button"
-          className="flex items-center justify-center rounded bg-orange-secondary p-2 md:gap-2"
+          className="flex items-center justify-center rounded bg-orange-secondary p-2 md:flex-wrap md:gap-2"
           onClick={signUserOut}
         >
           <Image
@@ -44,7 +44,7 @@ export default function Login() {
             height={26}
             layout="fixed"
           />
-          <spa className="hidden md:inline-block">Log out</spa>
+          <span className="hidden text-white md:inline-block">Log out</span>
         </button>
       )}
     </div>
