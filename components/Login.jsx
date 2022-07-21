@@ -19,7 +19,7 @@ export default function Login() {
       {!currentUser ? (
         <button
           type="button"
-          className="flex items-center justify-center gap-2 rounded bg-orange-primary  p-2 text-white"
+          className="flex w-36 items-center justify-center gap-2 rounded bg-orange-primary p-1 text-xs text-white"
           onClick={signInWithGoogle}
         >
           Login with Google

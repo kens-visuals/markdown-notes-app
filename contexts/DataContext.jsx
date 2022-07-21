@@ -31,7 +31,5 @@ export function DataProvider({ children }) {
     return setData(DATA.map((doc) => ({ ...doc })));
   }, [currentUser?.uid]);
 
-  console.log(data);
-
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 }
