@@ -126,7 +126,7 @@ export default function Navbar({
                     content
                   )
                 }
-                className="flex items-center justify-center rounded bg-orange-primary p-2.5 md:flex-wrap md:gap-3"
+                className="flex items-center justify-center rounded bg-orange-primary p-2 md:flex-wrap md:gap-3"
               >
                 <Image
                   src={saveIcon}
@@ -135,9 +135,9 @@ export default function Navbar({
                   height={20}
                   layout="fixed"
                 />
-                <spa className="hidden text-white md:inline-block">
+                <span className="hidden text-white md:inline-block">
                   Save Changes
-                </spa>
+                </span>
               </button>
             </>
           )}

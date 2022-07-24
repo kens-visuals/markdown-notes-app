@@ -22,7 +22,7 @@ export default function MarkdownEditor({
         <button
           type="button"
           onClick={() => setIsPreviewVisible(true)}
-          className="md:hidden"
+          className="flex h-2 items-center justify-center md:hidden"
         >
           <Image
             src={prewviewIcon}
@@ -44,6 +44,7 @@ export default function MarkdownEditor({
         />
       </ScrollSyncPane>
 
+      {/* DEL */}
       {/* <textarea
         id="markdown"
         className="h-full w-full resize-none p-4 font-roboto-mono text-primary-700 focus-visible:outline focus-visible:outline-orange-secondary dark:bg-primary-1000 dark:text-secondary-400  md:p-5"

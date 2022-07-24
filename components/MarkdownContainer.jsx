@@ -36,7 +36,7 @@ export default function Markdown({ currentMarkdown, content, setContent }) {
         )}
       </div>
 
-      {/* For tablet and biger viewports */}
+      {/* DEL non-sync version */}
       {/* <div className="hidden w-full md:flex md:min-h-screen">
         {!isPreviewVisible && (
           <MarkdownEditor
@@ -54,27 +54,29 @@ export default function Markdown({ currentMarkdown, content, setContent }) {
         </MarkdownPreview>
       </div> */}
 
+      {/* For tablet and biger viewports */}
       <ScrollSync>
         <div className="relative hidden min-h-screen md:flex">
           <ScrollSyncPane>
-            <div style={{ height: 1000 }} className="overflow-auto md:w-1/2">
-              {!isPreviewVisible && (
-                <MarkdownEditor
-                  content={content}
-                  setContent={setContent}
-                  currentMarkdown={currentMarkdown}
-                  setIsPreviewVisible={setIsPreviewVisible}
-                />
-              )}
+            <div
+              style={{ height: 1000 }}
+              className={`w-full overflow-auto md:flex md:flex-col 
+              ${isPreviewVisible ? 'md:hidden' : 'md:w-1/2'}`}
+            >
+              <MarkdownEditor
+                content={content}
+                setContent={setContent}
+                currentMarkdown={currentMarkdown}
+                setIsPreviewVisible={setIsPreviewVisible}
+              />
             </div>
           </ScrollSyncPane>
 
           <ScrollSyncPane>
             <div
               style={{ height: 1000 }}
-              className={`w-full overflow-auto md:flex md:flex-col md:items-center ${
-                isPreviewVisible ? 'md:w-full' : 'md:w-1/2'
-              }`}
+              className={`w-full overflow-auto 
+              ${isPreviewVisible ? 'md:w-full' : 'md:w-1/2'}`}
             >
               <MarkdownPreview
                 isPreviewVisible={isPreviewVisible}

@@ -34,7 +34,7 @@ export default function Login() {
       ) : (
         <button
           type="button"
-          className="flex items-center justify-center rounded bg-orange-secondary p-2 md:flex-wrap md:gap-2"
+          className="flex items-center justify-center rounded bg-orange-secondary p-1.5 md:flex-wrap md:gap-2"
           onClick={signUserOut}
         >
           <Image

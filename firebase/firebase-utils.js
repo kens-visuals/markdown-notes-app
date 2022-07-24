@@ -14,6 +14,7 @@ import {
 import { onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
 import { db, auth, googleProvider } from './firebase-config';
 
+// Initial Data
 import DATA from '../data.json';
 
 export const createUserDocFromAuth = async (userAuth) => {
