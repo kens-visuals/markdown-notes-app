@@ -30,6 +30,31 @@ export default function Sidebar({ currentMarkdown, setCurrentMarkdown }) {
           />
         </div>
 
+        {currentUser && (
+          <div className="my-7 flex flex-col items-start ">
+            <span className="mb-4 block text-sm uppercase text-secondary-500">
+              My Account
+            </span>
+
+            <Image
+              src={currentUser.photoURL}
+              alt="user image"
+              width={90}
+              height={90}
+              layout="fixed"
+              className="rounded-md"
+            />
+            <div className="mt-2 flex flex-col ">
+              <span className="text-sm text-secondary-300">
+                {currentUser.displayName}
+              </span>
+              <span className="text-xs text-secondary-500">
+                {currentUser.email}
+              </span>
+            </div>
+          </div>
+        )}
+
         <span className="my-7 block text-sm uppercase text-secondary-500">
           My Documents
         </span>

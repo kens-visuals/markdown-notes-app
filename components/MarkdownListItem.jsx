@@ -24,7 +24,7 @@ export default function MarkdownListItem({
         <button
           type="button"
           onClick={() => setCurrentMarkdown(data[idx])}
-          className="flex gap-4 text-left"
+          className="flex items-center gap-4 text-left"
         >
           <div className="flex items-center">
             <Image
@@ -41,7 +41,6 @@ export default function MarkdownListItem({
               {formatDate(markdown.createdAt)}
             </span>
             <span
-              type="button"
               className={`break-all text-base text-white ${
                 currentMarkdown.id === markdown.id && 'text-orange-primary'
               }`}
