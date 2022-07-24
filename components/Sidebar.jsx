@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { UserContext } from '../contexts/UserContext';
 
 // Firebase utils
-import { addNewMarkdown } from '../firebase/firebase-utils';
+import { addNewMarkdown, signUserOut } from '../firebase/firebase-utils';
 
 // Components
 import ThemeToggler from './ThemeToggler';
@@ -13,6 +13,7 @@ import MarkdownListItem from './MarkdownListItem';
 
 // Assets
 import logo from '../assets/logo.svg';
+import logoutIcon from '../assets/icon-logout.svg';
 
 export default function Sidebar({ currentMarkdown, setCurrentMarkdown }) {
   const { currentUser } = useContext(UserContext);
@@ -77,7 +78,27 @@ export default function Sidebar({ currentMarkdown, setCurrentMarkdown }) {
         </ul>
       </div>
 
-      <ThemeToggler />
+      <div className="space-y-4">
+        <ThemeToggler />
+
+        {currentUser && (
+          <button
+            type="button"
+            className="flex w-full items-center justify-center gap-2 rounded bg-orange-secondary p-1.5 md:flex-wrap md:gap-2"
+            onClick={signUserOut}
+          >
+            <Image
+              src={logoutIcon}
+              alt="logout"
+              width={26}
+              height={26}
+              layout="fixed"
+            />
+
+            <span className="text-white">Log out</span>
+          </button>
+        )}
+      </div>
     </aside>
   );
 }

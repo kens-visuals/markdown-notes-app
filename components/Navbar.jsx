@@ -2,13 +2,19 @@ import { useState, useContext } from 'react';
 import Image from 'next/image';
 
 // Firebase utils
-import { updateTitle, saveMarkdownChanges } from '../firebase/firebase-utils';
+import {
+  updateTitle,
+  saveMarkdownChanges,
+  signInWithGoogle,
+} from '../firebase/firebase-utils';
 
 // Contexts
 import { UserContext } from '../contexts/UserContext';
 
+// Assets
+import loginIcon from '../assets/icon-login.svg';
+
 // Components
-import Login from './Login';
 import Modal from './Modal';
 
 // Assets
@@ -142,7 +148,22 @@ export default function Navbar({
             </>
           )}
 
-          <Login />
+          {!currentUser && (
+            <button
+              type="button"
+              className="flex w-36 items-center justify-center gap-2 rounded bg-orange-primary p-1 text-xs text-white md:w-max md:p-2 md:px-3 md:text-base"
+              onClick={signInWithGoogle}
+            >
+              Login with Google
+              <Image
+                src={loginIcon}
+                alt="login"
+                width={22}
+                height={22}
+                layout="fixed"
+              />
+            </button>
+          )}
         </div>
       </div>
     </>
