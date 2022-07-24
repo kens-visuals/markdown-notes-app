@@ -5,6 +5,7 @@ import { ScrollSync, ScrollSyncPane } from 'react-scroll-sync';
 
 // Markdown Lib
 import ReactMarkdown from 'react-markdown';
+import gfm from 'remark-gfm';
 
 // Components
 import MarkdownPreview from './MarkdownPreview';
@@ -31,28 +32,12 @@ export default function Markdown({ currentMarkdown, content, setContent }) {
             isPreviewVisible={isPreviewVisible}
             setIsPreviewVisible={setIsPreviewVisible}
           >
-            <ReactMarkdown>{content || currentMarkdown.content}</ReactMarkdown>
+            <ReactMarkdown remarkPlugins={[gfm]}>
+              {content || currentMarkdown.content}
+            </ReactMarkdown>
           </MarkdownPreview>
         )}
       </div>
-
-      {/* DEL non-sync version */}
-      {/* <div className="hidden w-full md:flex md:min-h-screen">
-        {!isPreviewVisible && (
-          <MarkdownEditor
-            content={content}
-            setContent={setContent}
-            currentMarkdown={currentMarkdown}
-            setIsPreviewVisible={setIsPreviewVisible}
-          />
-        )}
-        <MarkdownPreview
-          isPreviewVisible={isPreviewVisible}
-          setIsPreviewVisible={setIsPreviewVisible}
-        >
-          <ReactMarkdown>{content || currentMarkdown.content}</ReactMarkdown>
-        </MarkdownPreview>
-      </div> */}
 
       {/* For tablet and biger viewports */}
       <ScrollSync>
@@ -82,7 +67,7 @@ export default function Markdown({ currentMarkdown, content, setContent }) {
                 isPreviewVisible={isPreviewVisible}
                 setIsPreviewVisible={setIsPreviewVisible}
               >
-                <ReactMarkdown>
+                <ReactMarkdown remarkPlugins={[gfm]}>
                   {content || currentMarkdown.content}
                 </ReactMarkdown>
               </MarkdownPreview>
