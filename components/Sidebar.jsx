@@ -63,7 +63,7 @@ export default function Sidebar({ currentMarkdown, setCurrentMarkdown }) {
         {currentUser && (
           <button
             type="button"
-            className="w-full rounded bg-orange-primary p-3 text-center text-white"
+            className="w-full rounded bg-orange-primary p-3 text-center text-white lg:transition-all lg:duration-300 lg:hover:bg-orange-secondary"
             onClick={() => addNewMarkdown(currentUser.uid)}
           >
             + New Document
@@ -84,14 +84,14 @@ export default function Sidebar({ currentMarkdown, setCurrentMarkdown }) {
         {currentUser && (
           <button
             type="button"
-            className="flex w-full items-center justify-center gap-2 rounded bg-orange-secondary p-1.5 md:flex-wrap md:gap-2"
+            className="flex w-full items-center justify-center gap-2 rounded border border-orange-primary p-1.5 md:gap-2 lg:transition-all lg:duration-300 lg:hover:border-transparent lg:hover:bg-orange-secondary"
             onClick={signUserOut}
           >
             <Image
               src={logoutIcon}
               alt="logout"
-              width={26}
-              height={26}
+              width={22}
+              height={22}
               layout="fixed"
             />
 

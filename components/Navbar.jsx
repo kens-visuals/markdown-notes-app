@@ -22,7 +22,6 @@ import hamburgerIcon from '../assets/icon-menu.svg';
 import closeIcon from '../assets/icon-close.svg';
 import fileIcon from '../assets/icon-document.svg';
 import saveIcon from '../assets/icon-save.svg';
-import deleteIcon from '../assets/icon-delete.svg';
 
 export default function Navbar({
   content,
@@ -52,7 +51,7 @@ export default function Navbar({
         <div className="flex justify-center gap-4">
           <button
             type="button"
-            className="flex items-center justify-center  bg-primary-700 p-4"
+            className="flex items-center justify-center bg-primary-700 p-4 lg:transition-all lg:duration-300 lg:ease-in-out lg:hover:bg-orange-primary"
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
           >
             {isSidebarOpen ? (
@@ -88,7 +87,7 @@ export default function Navbar({
               onSubmit={(e) =>
                 updateTitle(e, currentUser.uid, currentMarkdown.id, title)
               }
-              className="w-full"
+              className="w-full md:my-3"
             >
               <label htmlFor="title">
                 <span className="hidden font-roboto text-sm text-secondary-500 md:block">
@@ -99,7 +98,7 @@ export default function Navbar({
                   type="text"
                   value={title || currentMarkdown.title}
                   onChange={(e) => setTitle(e.target.value)}
-                  className="w-9/12 border-b border-transparent bg-transparent text-white transition-[border] duration-300 focus-visible:border-b focus-visible:border-b-white focus-visible:outline-none"
+                  className="w-9/12 border-b border-transparent bg-transparent text-white caret-orange-primary transition-[border] duration-300 focus-visible:border-b focus-visible:border-b-white focus-visible:outline-none  md:w-64"
                 />
               </label>
             </form>
@@ -112,15 +111,11 @@ export default function Navbar({
               <button
                 type="button"
                 onClick={() => setIsModalOpen(true)}
-                className="flex place-content-center p-1"
+                className="fill-secondary-500 p-1 lg:transition-all lg:duration-100 lg:hover:fill-orange-primary"
               >
-                <Image
-                  src={deleteIcon}
-                  alt="delete"
-                  width={17}
-                  height={20}
-                  layout="fixed"
-                />
+                <svg width="18" height="20" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 16a1 1 0 0 0 1-1V9a1 1 0 1 0-2 0v6a1 1 0 0 0 1 1ZM17 4h-4V3a3 3 0 0 0-3-3H8a3 3 0 0 0-3 3v1H1a1 1 0 1 0 0 2h1v11a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V6h1a1 1 0 0 0 0-2ZM7 3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v1H7V3Zm7 14a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6h10v11Zm-3-1a1 1 0 0 0 1-1V9a1 1 0 0 0-2 0v6a1 1 0 0 0 1 1Z" />
+                </svg>
               </button>
 
               <button
@@ -132,7 +127,7 @@ export default function Navbar({
                     content
                   )
                 }
-                className="flex items-center justify-center rounded bg-orange-primary p-2 md:flex-wrap md:gap-3"
+                className="flex items-center justify-center rounded bg-orange-primary p-2 md:gap-3 lg:transition-all lg:duration-300 lg:hover:bg-orange-secondary"
               >
                 <Image
                   src={saveIcon}
@@ -141,9 +136,12 @@ export default function Navbar({
                   height={20}
                   layout="fixed"
                 />
-                <span className="hidden text-white md:inline-block">
-                  Save Changes
-                </span>
+
+                {!isSidebarOpen && (
+                  <span className="hidden text-white md:inline-block">
+                    Save Changes
+                  </span>
+                )}
               </button>
             </>
           )}

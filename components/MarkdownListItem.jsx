@@ -41,7 +41,7 @@ export default function MarkdownListItem({
               {formatDate(markdown.createdAt)}
             </span>
             <span
-              className={`break-all text-base text-white ${
+              className={`break-all text-base text-white lg:transition-all lg:duration-100 lg:hover:text-orange-primary  ${
                 currentMarkdown.id === markdown.id && 'text-orange-primary'
               }`}
             >
