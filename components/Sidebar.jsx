@@ -21,7 +21,7 @@ export default function Sidebar({ currentMarkdown, setCurrentMarkdown }) {
   return (
     <aside className="flex min-h-screen w-64 flex-shrink-0 flex-col justify-between bg-primary-900 p-6 py-8">
       <div>
-        <div className="flex w-full items-center">
+        <div className="flex w-full items-center lg:hidden">
           <Image
             src={logo}
             alt="Markdown"
@@ -32,7 +32,7 @@ export default function Sidebar({ currentMarkdown, setCurrentMarkdown }) {
         </div>
 
         {currentUser && (
-          <div className="my-7 flex flex-col items-start ">
+          <div className="my-7 flex flex-col items-start lg:mt-0">
             <span className="mb-4 block text-sm uppercase text-secondary-500">
               My Account
             </span>

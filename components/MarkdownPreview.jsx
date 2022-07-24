@@ -6,7 +6,7 @@ export default function MarkdownPreview({
   return (
     <label
       htmlFor="preview"
-      className="w-full md:flex md:flex-col md:items-center"
+      className="inline-block w-full md:flex md:flex-col md:items-center lg:items-center"
     >
       <div className="flex w-full items-center justify-between bg-tertiary-200 p-3.5 dark:bg-primary-900 md:px-5">
         <span className="font-roboto text-sm uppercase tracking-widest text-secondary-500 dark:text-secondary-400">

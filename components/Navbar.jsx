@@ -12,6 +12,7 @@ import {
 import { UserContext } from '../contexts/UserContext';
 
 // Assets
+import logo from '../assets/logo.svg';
 import loginIcon from '../assets/icon-login.svg';
 
 // Components
@@ -72,6 +73,16 @@ export default function Navbar({
               />
             )}
           </button>
+
+          <div className="my-5 hidden w-full items-center border-r border-r-secondary-600 px-4 lg:flex">
+            <Image
+              src={logo}
+              alt="Markdown"
+              width={130}
+              height={12}
+              layout="intrinsic"
+            />
+          </div>
 
           <div className="flex items-center gap-2 md:gap-4">
             <Image
