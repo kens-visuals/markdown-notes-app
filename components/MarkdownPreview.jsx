@@ -8,7 +8,7 @@ export default function MarkdownPreview({
       htmlFor="preview"
       className="inline-block w-full md:flex md:flex-col md:items-center lg:items-center"
     >
-      <div className="flex w-full items-center justify-between bg-tertiary-200 p-3.5 dark:bg-primary-900 md:px-3">
+      <div className="flex w-full items-center justify-between bg-tertiary-200 p-3.5 dark:bg-primary-900 md:px-3 lg:px-6">
         <span className="font-roboto text-sm uppercase tracking-widest text-secondary-500 dark:text-secondary-400">
           Preview
         </span>

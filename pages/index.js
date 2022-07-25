@@ -20,7 +20,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="flex overflow-auto">
+      <div className="flex overflow-auto selection:bg-orange-primary selection:text-white">
         {isSidebarOpen && (
           <Sidebar
             currentMarkdown={currentMarkdown}
