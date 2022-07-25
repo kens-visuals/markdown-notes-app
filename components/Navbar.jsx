@@ -26,6 +26,7 @@ import saveIcon from '../assets/icon-save.svg';
 
 export default function Navbar({
   content,
+  setContent,
   isSidebarOpen,
   currentMarkdown,
   setIsSidebarOpen,
@@ -95,9 +96,10 @@ export default function Navbar({
 
             <form
               action="#"
-              onSubmit={(e) =>
-                updateTitle(e, currentUser.uid, currentMarkdown.id, title)
-              }
+              onSubmit={(e) => {
+                updateTitle(e, currentUser.uid, currentMarkdown.id, title);
+                setTitle('');
+              }}
               className="w-full md:my-3"
             >
               <label htmlFor="title">
@@ -131,13 +133,15 @@ export default function Navbar({
 
               <button
                 type="button"
-                onClick={() =>
+                onClick={() => {
                   saveMarkdownChanges(
                     currentUser.uid,
                     currentMarkdown.id,
                     content
-                  )
-                }
+                  );
+                  // NOTE: This is a hack to force the input to reload.
+                  setContent('');
+                }}
                 className="flex items-center justify-center rounded bg-orange-primary p-2 md:gap-3 lg:transition-all lg:duration-300 lg:hover:bg-orange-secondary"
               >
                 <Image

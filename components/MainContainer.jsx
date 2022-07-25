@@ -16,6 +16,7 @@ export default function MainContainer({
     <div className="min-h-screen w-full flex-shrink-0 bg-white dark:bg-primary-1000 md:flex-shrink">
       <Navbar
         content={content}
+        setContent={setContent}
         isSidebarOpen={isSidebarOpen}
         currentMarkdown={currentMarkdown}
         setIsSidebarOpen={setIsSidebarOpen}

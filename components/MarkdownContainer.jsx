@@ -70,6 +70,10 @@ export default function Markdown({ currentMarkdown, content, setContent }) {
                 <ReactMarkdown remarkPlugins={[gfm]}>
                   {content || currentMarkdown.content}
                 </ReactMarkdown>
+                {/* NOTE: Donesnt really work, but keep for now */}
+                {/* <ReactMarkdown remarkPlugins={[gfm]}>
+                  {content || currentMarkdown.content || ''}
+                </ReactMarkdown> */}
               </MarkdownPreview>
             </div>
           </ScrollSyncPane>

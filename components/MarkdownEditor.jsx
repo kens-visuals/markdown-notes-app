@@ -30,7 +30,7 @@ export default function MarkdownEditor({
         <textarea
           id="markdown"
           style={{ height: 1000 }}
-          className="h-full w-full resize-none p-4 font-roboto-mono text-primary-700 focus-visible:outline focus-visible:outline-orange-secondary dark:bg-primary-1000 dark:text-secondary-400  md:p-5"
+          className="h-full w-full resize-none p-4 font-roboto-mono text-primary-700 focus-visible:outline focus-visible:outline-orange-secondary dark:bg-primary-1000 dark:text-secondary-400 md:p-5 md:py-8"
           value={content || currentMarkdown.content}
           onChange={(e) => setContent(e.target.value)}
         />
