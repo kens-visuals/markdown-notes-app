@@ -56,7 +56,7 @@ export default function Sidebar({ currentMarkdown, setCurrentMarkdown }) {
           </div>
         )}
 
-        <span className="my-7 block text-sm uppercase text-secondary-500">
+        <span className="my-7 block text-sm uppercase text-secondary-500 lg:mt-0">
           My Documents
         </span>
 

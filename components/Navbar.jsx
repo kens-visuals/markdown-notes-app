@@ -11,14 +11,12 @@ import {
 // Contexts
 import { UserContext } from '../contexts/UserContext';
 
-// Assets
-import logo from '../assets/logo.svg';
-import loginIcon from '../assets/icon-login.svg';
-
 // Components
 import Modal from './Modal';
 
 // Assets
+import logo from '../assets/logo.svg';
+import loginIcon from '../assets/icon-login.svg';
 import hamburgerIcon from '../assets/icon-menu.svg';
 import closeIcon from '../assets/icon-close.svg';
 import fileIcon from '../assets/icon-document.svg';
@@ -34,7 +32,7 @@ export default function Navbar({
 }) {
   const { currentUser } = useContext(UserContext);
 
-  const [title, setTitle] = useState(currentMarkdown.title || '');
+  const [title, setTitle] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -109,7 +107,7 @@ export default function Navbar({
                 <input
                   id="title"
                   type="text"
-                  value={title || currentMarkdown.title}
+                  value={title || currentMarkdown.title || ''}
                   onChange={(e) => setTitle(e.target.value)}
                   className="w-9/12 border-b border-transparent bg-transparent text-white caret-orange-primary transition-[border] duration-300 focus-visible:border-b focus-visible:border-b-white focus-visible:outline-none  md:w-64"
                 />
@@ -118,7 +116,7 @@ export default function Navbar({
           </div>
         </div>
 
-        <div className="flex items-center gap-3 p-2">
+        <div className="flex items-center gap-3 p-2 md:px-3">
           {currentUser && (
             <>
               <button
