@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import Image from 'next/image';
 
 // Contexts
@@ -11,10 +11,13 @@ import formatDate from '../utils/formatDate';
 import fileIcon from '../assets/icon-document.svg';
 
 export default function MarkdownListItem({
-  currentMarkdown,
+  currentMarkdownNum,
   setCurrentMarkdown,
+  setCurrentMarkdownNum,
 }) {
   const { data } = useContext(DataContext);
+
+  useEffect(() => setCurrentMarkdownNum(0), [data]);
 
   return !data ? (
     <div>Loading...</div>
@@ -23,7 +26,10 @@ export default function MarkdownListItem({
       <li key={markdown.id}>
         <button
           type="button"
-          onClick={() => setCurrentMarkdown(data[idx])}
+          onClick={() => {
+            setCurrentMarkdown(data[idx]);
+            setCurrentMarkdownNum(idx);
+          }}
           className="flex items-center gap-4 text-left"
         >
           <div className="flex items-center">
@@ -42,7 +48,7 @@ export default function MarkdownListItem({
             </span>
             <span
               className={`break-all text-base text-white lg:transition-all lg:duration-100 lg:hover:text-orange-primary  ${
-                currentMarkdown.id === markdown.id && 'text-orange-primary'
+                currentMarkdownNum === idx && 'text-orange-primary'
               }`}
             >
               {markdown.title}

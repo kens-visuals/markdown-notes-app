@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 
 // ScrollSync Lib
 import { ScrollSync, ScrollSyncPane } from 'react-scroll-sync';
@@ -7,16 +7,23 @@ import { ScrollSync, ScrollSyncPane } from 'react-scroll-sync';
 import ReactMarkdown from 'react-markdown';
 import gfm from 'remark-gfm';
 
+import { DataContext } from '../contexts/DataContext';
+
 // Components
 import MarkdownPreview from './MarkdownPreview';
 import MarkdownEditor from './MarkdownEditor';
 
 export default function MarkdownContainer({
-  currentMarkdown,
   content,
   setContent,
+  currentMarkdownNum,
+  setCurrentMarkdownNum,
 }) {
   const [isPreviewVisible, setIsPreviewVisible] = useState(false);
+
+  const { data } = useContext(DataContext);
+
+  useEffect(() => setCurrentMarkdownNum(0), [data]);
 
   return (
     <>
@@ -26,7 +33,7 @@ export default function MarkdownContainer({
           <MarkdownEditor
             content={content}
             setContent={setContent}
-            currentMarkdown={currentMarkdown}
+            currentMarkdownNum={currentMarkdownNum}
             setIsPreviewVisible={setIsPreviewVisible}
           />
         )}
@@ -37,7 +44,7 @@ export default function MarkdownContainer({
             setIsPreviewVisible={setIsPreviewVisible}
           >
             <ReactMarkdown remarkPlugins={[gfm]}>
-              {content || currentMarkdown.content}
+              {content || data[currentMarkdownNum]?.content}
             </ReactMarkdown>
           </MarkdownPreview>
         )}
@@ -55,7 +62,7 @@ export default function MarkdownContainer({
               <MarkdownEditor
                 content={content}
                 setContent={setContent}
-                currentMarkdown={currentMarkdown}
+                currentMarkdownNum={currentMarkdownNum}
                 setIsPreviewVisible={setIsPreviewVisible}
               />
             </div>
@@ -72,12 +79,8 @@ export default function MarkdownContainer({
                 setIsPreviewVisible={setIsPreviewVisible}
               >
                 <ReactMarkdown remarkPlugins={[gfm]}>
-                  {content || currentMarkdown.content}
+                  {content || data[currentMarkdownNum]?.content}
                 </ReactMarkdown>
-                {/* NOTE: Donesnt really work, but keep for now */}
-                {/* <ReactMarkdown remarkPlugins={[gfm]}>
-                  {content || currentMarkdown.content || ''}
-                </ReactMarkdown> */}
               </MarkdownPreview>
             </div>
           </ScrollSyncPane>

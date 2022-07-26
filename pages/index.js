@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import Head from 'next/head';
 
 // Components
@@ -7,6 +8,7 @@ import MainContainer from '../components/MainContainer';
 
 export default function Home() {
   const [currentMarkdown, setCurrentMarkdown] = useState([]);
+  const [currentMarkdownNum, setCurrentMarkdownNum] = useState(0);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
@@ -25,6 +27,8 @@ export default function Home() {
           <Sidebar
             currentMarkdown={currentMarkdown}
             setCurrentMarkdown={setCurrentMarkdown}
+            currentMarkdownNum={currentMarkdownNum}
+            setCurrentMarkdownNum={setCurrentMarkdownNum}
           />
         )}
 
@@ -32,7 +36,9 @@ export default function Home() {
           isSidebarOpen={isSidebarOpen}
           currentMarkdown={currentMarkdown}
           setIsSidebarOpen={setIsSidebarOpen}
+          currentMarkdownNum={currentMarkdownNum}
           setCurrentMarkdown={setCurrentMarkdown}
+          setCurrentMarkdownNum={setCurrentMarkdownNum}
         />
       </div>
     </div>

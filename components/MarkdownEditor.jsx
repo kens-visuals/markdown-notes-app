@@ -1,12 +1,19 @@
+import { useContext } from 'react';
+
 // ScrollSync Lib
 import { ScrollSyncPane } from 'react-scroll-sync';
+
+// Contexts
+import { DataContext } from '../contexts/DataContext';
 
 export default function MarkdownEditor({
   content,
   setContent,
-  currentMarkdown,
+  currentMarkdownNum,
   setIsPreviewVisible,
 }) {
+  const { data } = useContext(DataContext);
+
   return (
     <label htmlFor="markdown">
       <div className="relative flex w-full items-center justify-between bg-tertiary-200 p-3.5 dark:bg-primary-900 md:px-5">
@@ -31,7 +38,7 @@ export default function MarkdownEditor({
           id="markdown"
           style={{ height: 1000 }}
           className="h-full w-full resize-none p-4 font-roboto-mono text-primary-700 focus-visible:outline focus-visible:outline-orange-secondary dark:bg-primary-1000 dark:text-secondary-400 md:p-5 md:py-8"
-          value={content || currentMarkdown.content}
+          value={content || data[currentMarkdownNum]?.content}
           onChange={(e) => setContent(e.target.value)}
         />
       </ScrollSyncPane>

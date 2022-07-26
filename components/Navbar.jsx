@@ -10,6 +10,7 @@ import {
 
 // Contexts
 import { UserContext } from '../contexts/UserContext';
+import { DataContext } from '../contexts/DataContext';
 
 // Components
 import Modal from './Modal';
@@ -29,11 +30,15 @@ export default function Navbar({
   currentMarkdown,
   setIsSidebarOpen,
   setCurrentMarkdown,
+  currentMarkdownNum,
 }) {
   const { currentUser } = useContext(UserContext);
+  const { data } = useContext(DataContext);
 
   const [title, setTitle] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  console.log(currentMarkdown);
 
   return (
     <>
@@ -107,7 +112,7 @@ export default function Navbar({
                 <input
                   id="title"
                   type="text"
-                  value={title || currentMarkdown.title || ''}
+                  value={title || data[currentMarkdownNum]?.title || ''}
                   onChange={(e) => setTitle(e.target.value)}
                   className="w-9/12 border-b border-transparent bg-transparent text-white caret-orange-primary transition-[border] duration-300 focus-visible:border-b focus-visible:border-b-white focus-visible:outline-none  md:w-64"
                 />
@@ -137,7 +142,6 @@ export default function Navbar({
                     currentMarkdown.id,
                     content
                   );
-                  // NOTE: This is a hack to force the input to reload.
                   setContent('');
                 }}
                 className="flex items-center justify-center rounded bg-orange-primary p-2 md:gap-3 lg:transition-all lg:duration-300 lg:hover:bg-orange-secondary"

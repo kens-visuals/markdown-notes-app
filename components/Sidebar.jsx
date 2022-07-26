@@ -15,7 +15,11 @@ import MarkdownListItem from './MarkdownListItem';
 import logo from '../assets/logo.svg';
 import logoutIcon from '../assets/icon-logout.svg';
 
-export default function Sidebar({ currentMarkdown, setCurrentMarkdown }) {
+export default function Sidebar({
+  setCurrentMarkdown,
+  currentMarkdownNum,
+  setCurrentMarkdownNum,
+}) {
   const { currentUser } = useContext(UserContext);
 
   return (
@@ -64,7 +68,10 @@ export default function Sidebar({ currentMarkdown, setCurrentMarkdown }) {
           <button
             type="button"
             className="w-full rounded bg-orange-primary p-3 text-center text-white lg:transition-all lg:duration-300 lg:hover:bg-orange-secondary"
-            onClick={() => addNewMarkdown(currentUser.uid)}
+            onClick={() => {
+              addNewMarkdown(currentUser.uid);
+              setCurrentMarkdownNum(0);
+            }}
           >
             + New Document
           </button>
@@ -72,8 +79,9 @@ export default function Sidebar({ currentMarkdown, setCurrentMarkdown }) {
 
         <ul className="mt-7 space-y-3">
           <MarkdownListItem
-            currentMarkdown={currentMarkdown}
             setCurrentMarkdown={setCurrentMarkdown}
+            currentMarkdownNum={currentMarkdownNum}
+            setCurrentMarkdownNum={setCurrentMarkdownNum}
           />
         </ul>
       </div>

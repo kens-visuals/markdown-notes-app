@@ -9,6 +9,8 @@ export default function MainContainer({
   currentMarkdown,
   setIsSidebarOpen,
   setCurrentMarkdown,
+  currentMarkdownNum,
+  setCurrentMarkdownNum,
 }) {
   const [content, setContent] = useState('');
 
@@ -21,6 +23,8 @@ export default function MainContainer({
         currentMarkdown={currentMarkdown}
         setIsSidebarOpen={setIsSidebarOpen}
         setCurrentMarkdown={setCurrentMarkdown}
+        currentMarkdownNum={currentMarkdownNum}
+        setCurrentMarkdownNum={setCurrentMarkdownNum}
       />
 
       <MarkdownContainer
@@ -28,6 +32,8 @@ export default function MainContainer({
         setContent={setContent}
         currentMarkdown={currentMarkdown}
         setCurrentMarkdown={setCurrentMarkdown}
+        currentMarkdownNum={currentMarkdownNum}
+        setCurrentMarkdownNum={setCurrentMarkdownNum}
       />
     </div>
   );
