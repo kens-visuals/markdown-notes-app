@@ -31,14 +31,13 @@ export default function Navbar({
   setIsSidebarOpen,
   setCurrentMarkdown,
   currentMarkdownNum,
+  setCurrentMarkdownNum,
 }) {
   const { currentUser } = useContext(UserContext);
   const { data } = useContext(DataContext);
 
   const [title, setTitle] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  console.log(currentMarkdown);
 
   return (
     <>
@@ -102,6 +101,7 @@ export default function Navbar({
               onSubmit={(e) => {
                 updateTitle(e, currentUser.uid, currentMarkdown.id, title);
                 setTitle('');
+                setCurrentMarkdownNum(0);
               }}
               className="w-full md:my-3"
             >

@@ -1,15 +1,21 @@
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 
 import Head from 'next/head';
+
+import { DataContext } from '../contexts/DataContext';
 
 // Components
 import Sidebar from '../components/Sidebar';
 import MainContainer from '../components/MainContainer';
 
 export default function Home() {
-  const [currentMarkdown, setCurrentMarkdown] = useState([]);
+  const { data } = useContext(DataContext);
+
   const [currentMarkdownNum, setCurrentMarkdownNum] = useState(0);
+  const [currentMarkdown, setCurrentMarkdown] = useState([]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  useEffect(() => setCurrentMarkdown(data[currentMarkdownNum]), [data]);
 
   return (
     <div>

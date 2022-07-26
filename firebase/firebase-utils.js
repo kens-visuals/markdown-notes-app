@@ -117,9 +117,6 @@ export const updateTitle = async (e, uid, id, title) => {
     const createdAt = serverTimestamp();
 
     await updateDoc(markdownRef, { title, createdAt });
-
-    // FIXME: Change title without reloading page
-    // window.location.reload();
   } catch (error) {
     console.error(error);
   }
@@ -132,9 +129,6 @@ export const saveMarkdownChanges = async (uid, id, content) => {
     const createdAt = serverTimestamp();
 
     await updateDoc(markdownRef, { content, createdAt });
-
-    // FIXME: Change title without reloading page
-    // window.location.reload();
   } catch (error) {
     console.error(error);
   }

@@ -3,6 +3,7 @@ import Image from 'next/image';
 
 // Contexts
 import { UserContext } from '../contexts/UserContext';
+import { DataContext } from '../contexts/DataContext';
 
 // Firebase utils
 import { addNewMarkdown, signUserOut } from '../firebase/firebase-utils';
@@ -21,6 +22,7 @@ export default function Sidebar({
   setCurrentMarkdownNum,
 }) {
   const { currentUser } = useContext(UserContext);
+  const { data } = useContext(DataContext);
 
   return (
     <aside className="flex min-h-screen w-64 flex-shrink-0 flex-col justify-between bg-primary-900 p-6 py-8">
@@ -71,6 +73,7 @@ export default function Sidebar({
             onClick={() => {
               addNewMarkdown(currentUser.uid);
               setCurrentMarkdownNum(0);
+              setCurrentMarkdown(data[currentMarkdownNum]);
             }}
           >
             + New Document
