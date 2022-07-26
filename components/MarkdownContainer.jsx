@@ -11,7 +11,11 @@ import gfm from 'remark-gfm';
 import MarkdownPreview from './MarkdownPreview';
 import MarkdownEditor from './MarkdownEditor';
 
-export default function Markdown({ currentMarkdown, content, setContent }) {
+export default function MarkdownContainer({
+  currentMarkdown,
+  content,
+  setContent,
+}) {
   const [isPreviewVisible, setIsPreviewVisible] = useState(false);
 
   return (
@@ -41,7 +45,7 @@ export default function Markdown({ currentMarkdown, content, setContent }) {
 
       {/* For tablet and biger viewports */}
       <ScrollSync>
-        <div className="relative hidden min-h-screen md:flex">
+        <div className="relative hidden md:flex">
           <ScrollSyncPane>
             <div
               style={{ height: 1000 }}

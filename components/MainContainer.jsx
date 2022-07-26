@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 // Components
 import Navbar from './Navbar';
-import Markdown from './MarkdownContainer';
+import MarkdownContainer from './MarkdownContainer';
 
 export default function MainContainer({
   isSidebarOpen,
@@ -13,7 +13,7 @@ export default function MainContainer({
   const [content, setContent] = useState('');
 
   return (
-    <div className="min-h-screen w-full flex-shrink-0 bg-white dark:bg-primary-1000 md:flex-shrink">
+    <div className="w-full flex-shrink-0 bg-white dark:bg-primary-1000 md:flex-shrink">
       <Navbar
         content={content}
         setContent={setContent}
@@ -23,7 +23,7 @@ export default function MainContainer({
         setCurrentMarkdown={setCurrentMarkdown}
       />
 
-      <Markdown
+      <MarkdownContainer
         content={content}
         setContent={setContent}
         currentMarkdown={currentMarkdown}
