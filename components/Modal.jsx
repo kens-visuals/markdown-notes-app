@@ -11,8 +11,18 @@ export default function Modal({
   setIsModalOpen,
   currentMarkdown,
   setCurrentMarkdown,
+  currentMarkdownNum,
+  setCurrentMarkdownNum,
 }) {
   const { data } = useContext(DataContext);
+
+  const handleDelete = () => {
+    setIsModalOpen(false);
+    deleteMarkdown(currentUser.uid, currentMarkdown.id);
+    setCurrentMarkdownNum(0);
+    setCurrentMarkdown(data[currentMarkdownNum]);
+  };
+
   return (
     <div
       id="popup-modal"
@@ -59,11 +69,7 @@ export default function Modal({
               type="button"
               data-modal-toggle="popup-modal"
               className="w-full rounded-lg bg-orange-primary px-5 py-2.5 text-center font-roboto text-base  text-white transition-all duration-200 hover:bg-orange-secondary focus:outline-none focus:ring-2 focus:ring-primary-900 dark:focus:ring-white"
-              onClick={() => {
-                setIsModalOpen(false);
-                deleteMarkdown(currentUser.uid, currentMarkdown.id);
-                setCurrentMarkdown(data.at(1));
-              }}
+              onClick={handleDelete}
             >
               Confirm & Delete
             </button>

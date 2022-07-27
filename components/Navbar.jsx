@@ -48,6 +48,8 @@ export default function Navbar({
           setIsModalOpen={setIsModalOpen}
           currentMarkdown={currentMarkdown}
           setCurrentMarkdown={setCurrentMarkdown}
+          currentMarkdownNum={currentMarkdownNum}
+          setCurrentMarkdownNum={setCurrentMarkdownNum}
         />
       )}
 
