@@ -36,7 +36,7 @@ export default function Navbar({
   const [title, setTitle] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  useEffect(() => setTitle(''), [currentMarkdownNum]);
+  useEffect(() => setTitle(''), [data, currentMarkdownNum]);
 
   return (
     <>
@@ -135,7 +135,6 @@ export default function Navbar({
                     currentMarkdown.id,
                     content
                   );
-                  setContent('');
                 }}
                 className="flex items-center justify-center rounded bg-orange-primary p-2 md:gap-3 lg:transition-all lg:duration-300 lg:hover:bg-orange-secondary"
               >
