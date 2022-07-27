@@ -46,7 +46,11 @@ export function DataProvider({ children }) {
       return () => unsub();
     }
 
-    return setData(DATA.map((doc) => ({ ...doc })));
+    return setData(
+      DATA.slice()
+        .reverse()
+        .map((doc) => ({ ...doc }))
+    );
   }, [currentUser?.uid]);
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
