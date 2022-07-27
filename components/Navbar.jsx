@@ -42,7 +42,7 @@ export default function Navbar({
         <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       )}
 
-      <div className="flex h-max w-full flex-shrink-0 justify-between bg-primary-800">
+      <nav className="flex h-max w-full flex-shrink-0 justify-between bg-primary-800">
         <div className="flex justify-center gap-4">
           <button
             type="button"
@@ -171,7 +171,7 @@ export default function Navbar({
             </button>
           )}
         </div>
-      </div>
+      </nav>
     </>
   );
 }

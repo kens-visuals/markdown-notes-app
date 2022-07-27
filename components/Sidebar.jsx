@@ -26,7 +26,7 @@ export default function Sidebar() {
   } = useContext(DataContext);
 
   return (
-    <aside className="flex min-h-screen w-64 flex-shrink-0 flex-col justify-between bg-primary-900 p-6 py-8">
+    <aside className="sticky left-0 top-0 z-50 flex h-screen w-64 flex-shrink-0 flex-col justify-between bg-primary-900 p-6 py-8">
       <div>
         <div className="flex w-full items-center lg:hidden">
           <Image
