@@ -33,6 +33,18 @@ export default function Navbar({ content, isSidebarOpen, setIsSidebarOpen }) {
 
   useEffect(() => setTitle(''), [data, currentMarkdownNum]);
 
+  const handleTitleChange = (e) => {
+    updateTitle(e, currentUser.uid, currentMarkdown.id, title);
+    setTitle('');
+    setCurrentMarkdownNum(0);
+  };
+
+  const handleSaveContent = () => {
+    if (content === currentMarkdown.content) return;
+
+    saveMarkdownChanges(currentUser.uid, currentMarkdown.id, content);
+  };
+
   return (
     <>
       {isModalOpen && (
@@ -86,11 +98,7 @@ export default function Navbar({ content, isSidebarOpen, setIsSidebarOpen }) {
 
             <form
               action="#"
-              onSubmit={(e) => {
-                updateTitle(e, currentUser.uid, currentMarkdown.id, title);
-                setTitle('');
-                setCurrentMarkdownNum(0);
-              }}
+              onSubmit={(e) => handleTitleChange(e)}
               className="w-full md:my-3"
             >
               <label htmlFor="title">
@@ -124,13 +132,7 @@ export default function Navbar({ content, isSidebarOpen, setIsSidebarOpen }) {
 
               <button
                 type="button"
-                onClick={() => {
-                  saveMarkdownChanges(
-                    currentUser.uid,
-                    currentMarkdown.id,
-                    content
-                  );
-                }}
+                onClick={handleSaveContent}
                 className="flex items-center justify-center rounded bg-orange-primary p-2 md:gap-3 lg:transition-all lg:duration-300 lg:hover:bg-orange-secondary"
               >
                 <Image
