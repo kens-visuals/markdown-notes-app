@@ -13,15 +13,11 @@ import { DataContext } from '../contexts/DataContext';
 import MarkdownPreview from './MarkdownPreview';
 import MarkdownEditor from './MarkdownEditor';
 
-export default function MarkdownContainer({
-  content,
-  setContent,
-  currentMarkdownNum,
-  setCurrentMarkdownNum,
-}) {
+export default function MarkdownContainer({ content, setContent }) {
   const [isPreviewVisible, setIsPreviewVisible] = useState(false);
 
-  const { data } = useContext(DataContext);
+  const { data, currentMarkdownNum, setCurrentMarkdownNum } =
+    useContext(DataContext);
 
   useEffect(() => setCurrentMarkdownNum(0), [data]);
 

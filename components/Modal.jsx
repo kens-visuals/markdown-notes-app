@@ -1,20 +1,21 @@
 import { useContext } from 'react';
+
 // Firebase utils
 import { deleteMarkdown } from '../firebase/firebase-utils';
 
 // Contexts
+import { UserContext } from '../contexts/UserContext';
 import { DataContext } from '../contexts/DataContext';
 
-export default function Modal({
-  currentUser,
-  isModalOpen,
-  setIsModalOpen,
-  currentMarkdown,
-  setCurrentMarkdown,
-  currentMarkdownNum,
-  setCurrentMarkdownNum,
-}) {
-  const { data } = useContext(DataContext);
+export default function Modal({ isModalOpen, setIsModalOpen }) {
+  const {
+    data,
+    currentMarkdown,
+    setCurrentMarkdown,
+    currentMarkdownNum,
+    setCurrentMarkdownNum,
+  } = useContext(DataContext);
+  const { currentUser } = useContext(UserContext);
 
   const handleDelete = () => {
     setIsModalOpen(false);
@@ -54,6 +55,7 @@ export default function Modal({
             </svg>
             <span className="sr-only">Close modal</span>
           </button>
+
           <div className="p-6">
             <h3 className="mb-5 font-roboto-slab text-xl text-primary-700 dark:text-white">
               Delete this document?
@@ -61,7 +63,7 @@ export default function Modal({
             <p className="mb-5 font-roboto-slab text-sm leading-6 text-secondary-500 dark:text-secondary-400">
               Are you sure you want to delete the{' '}
               <span className="font-bold text-orange-primary">
-                {currentMarkdown.title}
+                {data[currentMarkdownNum]?.title}
               </span>{' '}
               document and its contents? This action cannot be reversed.
             </p>

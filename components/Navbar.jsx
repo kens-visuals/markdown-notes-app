@@ -27,14 +27,11 @@ export default function Navbar({
   content,
   setContent,
   isSidebarOpen,
-  currentMarkdown,
   setIsSidebarOpen,
-  setCurrentMarkdown,
-  currentMarkdownNum,
-  setCurrentMarkdownNum,
 }) {
   const { currentUser } = useContext(UserContext);
-  const { data } = useContext(DataContext);
+  const { data, currentMarkdown, currentMarkdownNum, setCurrentMarkdownNum } =
+    useContext(DataContext);
 
   const [title, setTitle] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -42,15 +39,7 @@ export default function Navbar({
   return (
     <>
       {isModalOpen && (
-        <Modal
-          currentUser={currentUser}
-          isModalOpen={isModalOpen}
-          setIsModalOpen={setIsModalOpen}
-          currentMarkdown={currentMarkdown}
-          setCurrentMarkdown={setCurrentMarkdown}
-          currentMarkdownNum={currentMarkdownNum}
-          setCurrentMarkdownNum={setCurrentMarkdownNum}
-        />
+        <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       )}
 
       <div className="flex h-max w-full flex-shrink-0 justify-between bg-primary-800">

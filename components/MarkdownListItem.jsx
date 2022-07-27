@@ -10,12 +10,13 @@ import formatDate from '../utils/formatDate';
 // Assets
 import fileIcon from '../assets/icon-document.svg';
 
-export default function MarkdownListItem({
-  currentMarkdownNum,
-  setCurrentMarkdown,
-  setCurrentMarkdownNum,
-}) {
-  const { data } = useContext(DataContext);
+export default function MarkdownListItem() {
+  const {
+    data,
+    currentMarkdownNum,
+    setCurrentMarkdownNum,
+    setCurrentMarkdown,
+  } = useContext(DataContext);
 
   useEffect(() => setCurrentMarkdownNum(0), [data]);
 

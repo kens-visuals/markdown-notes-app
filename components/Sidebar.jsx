@@ -16,13 +16,14 @@ import MarkdownListItem from './MarkdownListItem';
 import logo from '../assets/logo.svg';
 import logoutIcon from '../assets/icon-logout.svg';
 
-export default function Sidebar({
-  setCurrentMarkdown,
-  currentMarkdownNum,
-  setCurrentMarkdownNum,
-}) {
+export default function Sidebar() {
   const { currentUser } = useContext(UserContext);
-  const { data } = useContext(DataContext);
+  const {
+    data,
+    setCurrentMarkdown,
+    currentMarkdownNum,
+    setCurrentMarkdownNum,
+  } = useContext(DataContext);
 
   return (
     <aside className="flex min-h-screen w-64 flex-shrink-0 flex-col justify-between bg-primary-900 p-6 py-8">
@@ -81,11 +82,7 @@ export default function Sidebar({
         )}
 
         <ul className="my-7 h-3/5 space-y-3 overflow-y-scroll">
-          <MarkdownListItem
-            setCurrentMarkdown={setCurrentMarkdown}
-            currentMarkdownNum={currentMarkdownNum}
-            setCurrentMarkdownNum={setCurrentMarkdownNum}
-          />
+          <MarkdownListItem />
         </ul>
       </div>
 

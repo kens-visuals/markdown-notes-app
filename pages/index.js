@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from 'react';
-
 import Head from 'next/head';
 
+// Contexts
 import { DataContext } from '../contexts/DataContext';
 
 // Components
@@ -9,10 +9,9 @@ import Sidebar from '../components/Sidebar';
 import MainContainer from '../components/MainContainer';
 
 export default function Home() {
-  const { data } = useContext(DataContext);
+  const { data, currentMarkdownNum, setCurrentMarkdown } =
+    useContext(DataContext);
 
-  const [currentMarkdownNum, setCurrentMarkdownNum] = useState(0);
-  const [currentMarkdown, setCurrentMarkdown] = useState([]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => setCurrentMarkdown(data[currentMarkdownNum]), [data]);
@@ -29,22 +28,11 @@ export default function Home() {
       </Head>
 
       <div className="flex overflow-auto selection:bg-orange-primary selection:text-white">
-        {isSidebarOpen && (
-          <Sidebar
-            currentMarkdown={currentMarkdown}
-            setCurrentMarkdown={setCurrentMarkdown}
-            currentMarkdownNum={currentMarkdownNum}
-            setCurrentMarkdownNum={setCurrentMarkdownNum}
-          />
-        )}
+        {isSidebarOpen && <Sidebar />}
 
         <MainContainer
           isSidebarOpen={isSidebarOpen}
-          currentMarkdown={currentMarkdown}
           setIsSidebarOpen={setIsSidebarOpen}
-          currentMarkdownNum={currentMarkdownNum}
-          setCurrentMarkdown={setCurrentMarkdown}
-          setCurrentMarkdownNum={setCurrentMarkdownNum}
         />
       </div>
     </div>
