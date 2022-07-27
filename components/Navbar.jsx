@@ -23,12 +23,7 @@ import closeIcon from '../assets/icon-close.svg';
 import fileIcon from '../assets/icon-document.svg';
 import saveIcon from '../assets/icon-save.svg';
 
-export default function Navbar({
-  content,
-  setContent,
-  isSidebarOpen,
-  setIsSidebarOpen,
-}) {
+export default function Navbar({ content, isSidebarOpen, setIsSidebarOpen }) {
   const { currentUser } = useContext(UserContext);
   const { data, currentMarkdown, currentMarkdownNum, setCurrentMarkdownNum } =
     useContext(DataContext);
