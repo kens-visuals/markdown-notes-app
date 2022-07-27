@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import Image from 'next/image';
 
 // Contexts
@@ -17,8 +17,6 @@ export default function MarkdownListItem() {
     setCurrentMarkdownNum,
     setCurrentMarkdown,
   } = useContext(DataContext);
-
-  useEffect(() => setCurrentMarkdownNum(0), [data]);
 
   return !data ? (
     <div>Loading...</div>

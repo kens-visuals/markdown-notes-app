@@ -29,7 +29,6 @@ export default function MarkdownContainer({ content, setContent }) {
           <MarkdownEditor
             content={content}
             setContent={setContent}
-            currentMarkdownNum={currentMarkdownNum}
             setIsPreviewVisible={setIsPreviewVisible}
           />
         )}
@@ -58,7 +57,6 @@ export default function MarkdownContainer({ content, setContent }) {
               <MarkdownEditor
                 content={content}
                 setContent={setContent}
-                currentMarkdownNum={currentMarkdownNum}
                 setIsPreviewVisible={setIsPreviewVisible}
               />
             </div>

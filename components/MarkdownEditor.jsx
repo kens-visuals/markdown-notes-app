@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 // ScrollSync Lib
 import { ScrollSyncPane } from 'react-scroll-sync';
@@ -9,10 +9,11 @@ import { DataContext } from '../contexts/DataContext';
 export default function MarkdownEditor({
   content,
   setContent,
-  currentMarkdownNum,
   setIsPreviewVisible,
 }) {
-  const { data } = useContext(DataContext);
+  const { data, currentMarkdownNum } = useContext(DataContext);
+
+  useEffect(() => setContent(''), [currentMarkdownNum]);
 
   return (
     <label htmlFor="markdown">
