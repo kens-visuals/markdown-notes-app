@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import Image from 'next/image';
 
 // Firebase utils
@@ -35,6 +35,8 @@ export default function Navbar({
 
   const [title, setTitle] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => setTitle(''), [currentMarkdownNum]);
 
   return (
     <>
