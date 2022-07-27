@@ -80,7 +80,7 @@ export default function Sidebar({
           </button>
         )}
 
-        <ul className="mt-7 space-y-3">
+        <ul className="my-7 h-3/5 space-y-3 overflow-y-scroll">
           <MarkdownListItem
             setCurrentMarkdown={setCurrentMarkdown}
             currentMarkdownNum={currentMarkdownNum}
