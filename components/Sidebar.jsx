@@ -26,8 +26,8 @@ export default function Sidebar() {
   } = useContext(DataContext);
 
   return (
-    <aside className="sticky left-0 top-0 z-50 flex h-screen w-64 flex-shrink-0 flex-col justify-between bg-primary-900 p-6 py-8">
-      <div>
+    <aside className="flex h-screen w-64 flex-shrink-0 flex-col justify-between bg-primary-900 p-6 py-8">
+      <div className="overflow-scroll">
         <div className="flex w-full items-center lg:hidden">
           <Image
             src={logo}
@@ -81,7 +81,7 @@ export default function Sidebar() {
           </button>
         )}
 
-        <ul className="my-7 h-3/5 space-y-3 overflow-y-scroll">
+        <ul className=" my-7 h-2/6 space-y-3 overflow-y-scroll md:h-1/2">
           <MarkdownListItem />
         </ul>
       </div>

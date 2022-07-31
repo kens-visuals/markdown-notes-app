@@ -31,11 +31,14 @@ export default function Navbar({ content, isSidebarOpen, setIsSidebarOpen }) {
   const [title, setTitle] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  useEffect(() => setTitle(''), [data, currentMarkdownNum]);
+  // Reset title input when data or currentMarkdownNum changes
+  useEffect(
+    () => setTitle(data[currentMarkdownNum]?.title),
+    [data, currentMarkdownNum]
+  );
 
   const handleTitleChange = (e) => {
     updateTitle(e, currentUser.uid, currentMarkdown.id, title);
-    setTitle('');
     setCurrentMarkdownNum(0);
   };
 

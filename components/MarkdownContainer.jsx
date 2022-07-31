@@ -35,6 +35,7 @@ export default function MarkdownContainer({ content, setContent }) {
 
         {isPreviewVisible && (
           <MarkdownPreview
+            content={content}
             isPreviewVisible={isPreviewVisible}
             setIsPreviewVisible={setIsPreviewVisible}
           >
@@ -69,11 +70,12 @@ export default function MarkdownContainer({ content, setContent }) {
               ${isPreviewVisible ? 'md:w-full' : 'md:w-1/2'}`}
             >
               <MarkdownPreview
+                content={content}
                 isPreviewVisible={isPreviewVisible}
                 setIsPreviewVisible={setIsPreviewVisible}
               >
                 <ReactMarkdown remarkPlugins={[gfm]}>
-                  {content || data[currentMarkdownNum]?.content}
+                  {content || data[currentMarkdownNum]?.content || ''}
                 </ReactMarkdown>
               </MarkdownPreview>
             </div>

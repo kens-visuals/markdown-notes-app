@@ -13,7 +13,10 @@ export default function MarkdownEditor({
 }) {
   const { data, currentMarkdownNum } = useContext(DataContext);
 
-  useEffect(() => setContent(''), [currentMarkdownNum]);
+  useEffect(
+    () => setContent(data[currentMarkdownNum]?.content),
+    [currentMarkdownNum]
+  );
 
   return (
     <label htmlFor="markdown">

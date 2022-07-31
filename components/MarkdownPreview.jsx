@@ -1,8 +1,21 @@
+import { useContext } from 'react';
+
+// Firebase utils
+import { saveMarkdownChanges } from '../firebase/firebase-utils';
+
+// Contexts
+import { UserContext } from '../contexts/UserContext';
+import { DataContext } from '../contexts/DataContext';
+
 export default function MarkdownPreview({
+  content,
   children,
   isPreviewVisible,
   setIsPreviewVisible,
 }) {
+  const { currentUser } = useContext(UserContext);
+  const { currentMarkdown } = useContext(DataContext);
+
   return (
     <label
       htmlFor="preview"
@@ -15,7 +28,10 @@ export default function MarkdownPreview({
 
         <button
           type="button"
-          onClick={() => setIsPreviewVisible(!isPreviewVisible)}
+          onClick={() => {
+            setIsPreviewVisible(!isPreviewVisible);
+            saveMarkdownChanges(currentUser.uid, currentMarkdown.id, content);
+          }}
           className="flex h-2 items-center justify-center fill-secondary-500 p-1 lg:transition-all lg:duration-100 lg:hover:fill-orange-primary"
         >
           {isPreviewVisible ? (
