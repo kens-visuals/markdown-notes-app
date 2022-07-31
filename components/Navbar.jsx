@@ -90,7 +90,10 @@ export default function Navbar({ content, isSidebarOpen, setIsSidebarOpen }) {
             />
           </div>
 
-          <div className="flex items-center gap-2 md:gap-4">
+          <div
+            className={`flex items-center gap-2 md:gap-4 
+            ${isSidebarOpen && 'hidden md:flex'}`}
+          >
             <Image
               src={fileIcon}
               alt="file"
@@ -120,7 +123,10 @@ export default function Navbar({ content, isSidebarOpen, setIsSidebarOpen }) {
           </div>
         </div>
 
-        <div className="flex items-center gap-3 p-2 md:px-3">
+        <div
+          className={`flex items-center gap-3 p-2 md:px-3 
+          ${isSidebarOpen && 'hidden md:flex'}`}
+        >
           {currentUser && (
             <>
               <button
