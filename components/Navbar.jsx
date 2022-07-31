@@ -14,6 +14,7 @@ import { DataContext } from '../contexts/DataContext';
 
 // Components
 import Modal from './Modal';
+import Alert from './Alert';
 
 // Assets
 import logo from '../assets/logo.svg';
@@ -30,12 +31,19 @@ export default function Navbar({ content, isSidebarOpen, setIsSidebarOpen }) {
 
   const [title, setTitle] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
 
   // Reset title input when data or currentMarkdownNum changes
   useEffect(
     () => setTitle(data[currentMarkdownNum]?.title),
     [data, currentMarkdownNum]
   );
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsSaving(false), 3000);
+
+    return () => clearTimeout(timer);
+  }, [isSaving]);
 
   const handleTitleChange = (e) => {
     if (title === currentMarkdown.title) return;
@@ -47,6 +55,7 @@ export default function Navbar({ content, isSidebarOpen, setIsSidebarOpen }) {
   const handleSaveContent = () => {
     if (content === currentMarkdown.content) return;
 
+    setIsSaving(true);
     saveMarkdownChanges(currentUser.uid, currentMarkdown.id, content);
   };
 
@@ -55,6 +64,8 @@ export default function Navbar({ content, isSidebarOpen, setIsSidebarOpen }) {
       {isModalOpen && (
         <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       )}
+
+      {isSaving && <Alert />}
 
       <nav className="flex h-max w-full flex-shrink-0 justify-between bg-primary-800">
         <div className="flex justify-center gap-4">
