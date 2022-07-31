@@ -36,6 +36,7 @@ export default function Sidebar() {
             width={130}
             height={12}
             layout="intrinsic"
+            aria-hidden="true"
           />
         </div>
 
@@ -52,6 +53,7 @@ export default function Sidebar() {
               height={90}
               layout="fixed"
               className="rounded-md"
+              aria-hidden="true"
             />
             <div className="mt-2 flex flex-col ">
               <span className="text-sm text-secondary-300">

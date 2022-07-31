@@ -38,6 +38,7 @@ export default function MarkdownListItem() {
               width={16}
               height={18}
               layout="fixed"
+              aria-hidden="true"
             />
           </div>
 
@@ -46,9 +47,8 @@ export default function MarkdownListItem() {
               {formatDate(markdown.createdAt)}
             </span>
             <span
-              className={`break-all text-base text-white lg:transition-all lg:duration-100 lg:hover:text-orange-primary  ${
-                currentMarkdownNum === idx && 'text-orange-primary'
-              }`}
+              className={`break-all text-base text-white lg:transition-all lg:duration-100 lg:hover:text-orange-primary 
+              ${currentMarkdownNum === idx && 'text-orange-primary'}`}
             >
               {markdown.title}
             </span>
