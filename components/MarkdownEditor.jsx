@@ -1,17 +1,36 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 // ScrollSync Lib
 import { ScrollSyncPane } from 'react-scroll-sync';
 
+// Firebase utils
+import { saveMarkdownChanges } from '../firebase/firebase-utils';
+
 // Contexts
 import { DataContext } from '../contexts/DataContext';
+import { UserContext } from '../contexts/UserContext';
 
 export default function MarkdownEditor({
   content,
   setContent,
+  isPreviewVisible,
   setIsPreviewVisible,
 }) {
-  const { data, currentMarkdownNum } = useContext(DataContext);
+  const { data, currentMarkdownNum, currentMarkdown } = useContext(DataContext);
+  const { currentUser } = useContext(UserContext);
+
+  useEffect(() => {
+    if (currentUser) {
+      setContent(data[currentMarkdownNum]?.content);
+    }
+  }, [currentMarkdownNum]);
+
+  useEffect(() => {
+    if (currentUser) {
+      setContent(data[currentMarkdownNum]?.content);
+      saveMarkdownChanges(currentUser?.uid, currentMarkdown.id, content);
+    }
+  }, [isPreviewVisible]);
 
   return (
     <label

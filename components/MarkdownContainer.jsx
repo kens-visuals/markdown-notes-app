@@ -30,6 +30,7 @@ export default function MarkdownContainer({ content, setContent }) {
             <MarkdownEditor
               content={content}
               setContent={setContent}
+              isPreviewVisible={isPreviewVisible}
               setIsPreviewVisible={setIsPreviewVisible}
             />
           </div>
@@ -38,7 +39,7 @@ export default function MarkdownContainer({ content, setContent }) {
         {isPreviewVisible && (
           <div className="relative overflow-auto md:hidden">
             <MarkdownPreview
-              content={content}
+              setContent={setContent}
               isPreviewVisible={isPreviewVisible}
               setIsPreviewVisible={setIsPreviewVisible}
             >
@@ -62,6 +63,7 @@ export default function MarkdownContainer({ content, setContent }) {
               <MarkdownEditor
                 content={content}
                 setContent={setContent}
+                isPreviewVisible={isPreviewVisible}
                 setIsPreviewVisible={setIsPreviewVisible}
               />
             </div>
@@ -74,7 +76,7 @@ export default function MarkdownContainer({ content, setContent }) {
               ${isPreviewVisible ? 'md:w-full' : 'md:w-1/2'}`}
             >
               <MarkdownPreview
-                content={content}
+                setContent={setContent}
                 isPreviewVisible={isPreviewVisible}
                 setIsPreviewVisible={setIsPreviewVisible}
               >
