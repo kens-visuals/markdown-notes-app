@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 
 // ScrollSync Lib
 import { ScrollSyncPane } from 'react-scroll-sync';
@@ -13,18 +13,12 @@ export default function MarkdownEditor({
 }) {
   const { data, currentMarkdownNum } = useContext(DataContext);
 
-  useEffect(
-    () => setContent(data[currentMarkdownNum]?.content),
-    [currentMarkdownNum]
-  );
-
   return (
     <label
       htmlFor="markdown"
-      // className="overflow-hidden"
-      className="inline-block h-full w-full overflow-auto"
+      className="inline-block h-full w-full overflow-hidden"
     >
-      <div className="flex w-full items-center justify-between bg-tertiary-200 p-3.5 dark:bg-primary-900 md:px-5">
+      <div className="absolute top-0 flex w-full items-center justify-between bg-tertiary-200 p-3.5 dark:bg-primary-900 md:static md:px-5">
         <span className="font-roboto text-sm uppercase tracking-widest text-secondary-500 dark:text-secondary-400">
           Markdown
         </span>
@@ -49,7 +43,7 @@ export default function MarkdownEditor({
       <ScrollSyncPane>
         <textarea
           id="markdown"
-          className="h-full w-full resize-none p-4 pb-32 font-roboto-mono text-primary-700 focus-visible:outline focus-visible:outline-orange-secondary dark:bg-primary-1000 dark:text-secondary-400 md:p-5 md:pb-12"
+          className="h-full w-full resize-none p-4 pt-16 pb-32 font-roboto-mono text-primary-700 focus-visible:outline focus-visible:outline-orange-secondary dark:bg-primary-1000 dark:text-secondary-400 md:p-6 md:pb-12"
           value={content || data[currentMarkdownNum]?.content}
           onChange={(e) => setContent(e.target.value)}
         />

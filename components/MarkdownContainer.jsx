@@ -23,28 +23,32 @@ export default function MarkdownContainer({ content, setContent }) {
 
   return (
     <>
-      {/* For mobile viewport */}
-      <div className="overflow-auto  md:hidden">
+      <>
+        {/* For mobile viewport */}
         {!isPreviewVisible && (
-          <MarkdownEditor
-            content={content}
-            setContent={setContent}
-            setIsPreviewVisible={setIsPreviewVisible}
-          />
+          <div className="relative overflow-hidden md:hidden">
+            <MarkdownEditor
+              content={content}
+              setContent={setContent}
+              setIsPreviewVisible={setIsPreviewVisible}
+            />
+          </div>
         )}
 
         {isPreviewVisible && (
-          <MarkdownPreview
-            content={content}
-            isPreviewVisible={isPreviewVisible}
-            setIsPreviewVisible={setIsPreviewVisible}
-          >
-            <ReactMarkdown remarkPlugins={[gfm]}>
-              {content || data[currentMarkdownNum]?.content}
-            </ReactMarkdown>
-          </MarkdownPreview>
+          <div className="relative overflow-auto md:hidden">
+            <MarkdownPreview
+              content={content}
+              isPreviewVisible={isPreviewVisible}
+              setIsPreviewVisible={setIsPreviewVisible}
+            >
+              <ReactMarkdown remarkPlugins={[gfm]}>
+                {content || data[currentMarkdownNum]?.content}
+              </ReactMarkdown>
+            </MarkdownPreview>
+          </div>
         )}
-      </div>
+      </>
 
       {/* For tablet and biger viewports */}
       <ScrollSync>
