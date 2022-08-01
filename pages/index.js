@@ -19,8 +19,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        {/* FIXME: */}
-        <title>Create Next App</title>
+        <title>Markdown App</title>
         <meta
           name="description"
           content="Markdown editor built with NEXTJS and Firebase"
