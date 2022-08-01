@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import Image from 'next/image';
 
 // Contexts
@@ -17,6 +17,8 @@ export default function MarkdownListItem() {
     setCurrentMarkdownNum,
     setCurrentMarkdown,
   } = useContext(DataContext);
+
+  useEffect(() => setCurrentMarkdownNum(0), [data]);
 
   const handleCurrentMarkdownSelection = (idx) => {
     setCurrentMarkdown(data[idx]);
