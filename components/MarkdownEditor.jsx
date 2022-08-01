@@ -24,7 +24,7 @@ export default function MarkdownEditor({
     if (currentUser) {
       setContent(data[currentMarkdownNum]?.content);
     }
-  }, [currentMarkdownNum]);
+  }, [currentMarkdownNum, currentUser]);
 
   // When user changes the content and click on preview, save the changes
   useEffect(() => {
