@@ -64,8 +64,9 @@ export default function MarkdownEditor({
       <ScrollSyncPane>
         <textarea
           id="markdown"
+          defaultValue=""
           className="h-full w-full resize-none p-4 pt-16 pb-32 font-roboto-mono text-primary-700 focus-visible:outline focus-visible:outline-orange-secondary dark:bg-primary-1000 dark:text-secondary-400 md:p-6 md:pb-12"
-          value={content || data[currentMarkdownNum]?.content}
+          value={content}
           onChange={(e) => setContent(e.target.value)}
         />
       </ScrollSyncPane>

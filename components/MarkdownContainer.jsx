@@ -16,8 +16,7 @@ import MarkdownEditor from './MarkdownEditor';
 export default function MarkdownContainer({ content, setContent }) {
   const [isPreviewVisible, setIsPreviewVisible] = useState(false);
 
-  const { data, currentMarkdownNum, setCurrentMarkdownNum } =
-    useContext(DataContext);
+  const { data, setCurrentMarkdownNum } = useContext(DataContext);
 
   useEffect(() => setCurrentMarkdownNum(0), [data]);
 
@@ -44,7 +43,7 @@ export default function MarkdownContainer({ content, setContent }) {
               setIsPreviewVisible={setIsPreviewVisible}
             >
               <ReactMarkdown linkTarget="_blank" remarkPlugins={[gfm]}>
-                {content || data[currentMarkdownNum]?.content}
+                {content}
               </ReactMarkdown>
             </MarkdownPreview>
           </div>
@@ -81,7 +80,7 @@ export default function MarkdownContainer({ content, setContent }) {
                 setIsPreviewVisible={setIsPreviewVisible}
               >
                 <ReactMarkdown linkTarget="_blank" remarkPlugins={[gfm]}>
-                  {content || data[currentMarkdownNum]?.content || ''}
+                  {content}
                 </ReactMarkdown>
               </MarkdownPreview>
             </div>
