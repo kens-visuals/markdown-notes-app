@@ -1,4 +1,4 @@
-export default function Alert() {
+export default function Alert({ alertMessage }) {
   return (
     <div
       id="toast-success"
@@ -21,7 +21,7 @@ export default function Alert() {
         </svg>
         <span className="sr-only">Check icon</span>
       </div>
-      <div className="ml-3 text-sm font-normal">Saved successfully</div>
+      <div className="ml-3 text-sm font-normal">{alertMessage}</div>
     </div>
   );
 }

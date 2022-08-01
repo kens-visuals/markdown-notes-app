@@ -32,6 +32,7 @@ export default function Navbar({ content, isSidebarOpen, setIsSidebarOpen }) {
   const [title, setTitle] = useState('' || data[currentMarkdownNum]?.title);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
 
   // Reset title input when data or currentMarkdownNum changes
   useEffect(
@@ -52,6 +53,8 @@ export default function Navbar({ content, isSidebarOpen, setIsSidebarOpen }) {
       return;
     }
 
+    setIsSaving(true);
+    setAlertMessage('Title updated successfuly!');
     updateTitle(e, currentUser.uid, currentMarkdown.id, title);
     setCurrentMarkdownNum(0);
   };
@@ -60,6 +63,7 @@ export default function Navbar({ content, isSidebarOpen, setIsSidebarOpen }) {
     if (content === currentMarkdown.content) return;
 
     setIsSaving(true);
+    setAlertMessage('Markdown saved successfully!');
     saveMarkdownChanges(currentUser.uid, currentMarkdown.id, content);
   };
 
@@ -69,7 +73,7 @@ export default function Navbar({ content, isSidebarOpen, setIsSidebarOpen }) {
         <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       )}
 
-      {isSaving && <Alert />}
+      {isSaving && <Alert alertMessage={alertMessage} />}
 
       <nav className="flex h-max w-full flex-shrink-0 justify-between bg-primary-800">
         <div className="flex justify-center gap-4">

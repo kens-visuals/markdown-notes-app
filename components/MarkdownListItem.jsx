@@ -18,6 +18,11 @@ export default function MarkdownListItem() {
     setCurrentMarkdown,
   } = useContext(DataContext);
 
+  const handleCurrentMarkdownSelection = (idx) => {
+    setCurrentMarkdown(data[idx]);
+    setCurrentMarkdownNum(idx);
+  };
+
   return !data ? (
     <div>Loading...</div>
   ) : (
@@ -25,10 +30,7 @@ export default function MarkdownListItem() {
       <li key={markdown.id}>
         <button
           type="button"
-          onClick={() => {
-            setCurrentMarkdown(data[idx]);
-            setCurrentMarkdownNum(idx);
-          }}
+          onClick={() => handleCurrentMarkdownSelection(idx)}
           className="flex items-center gap-4 text-left"
         >
           <div className="flex items-center">

@@ -12,13 +12,14 @@ export default function Home() {
   const { data, currentMarkdownNum, setCurrentMarkdown } =
     useContext(DataContext);
 
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   useEffect(() => setCurrentMarkdown(data[currentMarkdownNum]), [data]);
 
   return (
     <div>
       <Head>
+        {/* FIXME: */}
         <title>Create Next App</title>
         <meta
           name="description"
