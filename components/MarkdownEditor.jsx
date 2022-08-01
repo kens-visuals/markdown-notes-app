@@ -19,9 +19,13 @@ export default function MarkdownEditor({
   );
 
   return (
-    <label htmlFor="markdown">
-      <div className="relative flex w-full items-center justify-between bg-tertiary-200 p-3.5 dark:bg-primary-900 md:px-5">
-        <span className="sticky font-roboto text-sm uppercase tracking-widest text-secondary-500 dark:text-secondary-400">
+    <label
+      htmlFor="markdown"
+      // className="overflow-hidden"
+      className="inline-block h-full w-full overflow-auto"
+    >
+      <div className="flex w-full items-center justify-between bg-tertiary-200 p-3.5 dark:bg-primary-900 md:px-5">
+        <span className="font-roboto text-sm uppercase tracking-widest text-secondary-500 dark:text-secondary-400">
           Markdown
         </span>
 
@@ -45,8 +49,7 @@ export default function MarkdownEditor({
       <ScrollSyncPane>
         <textarea
           id="markdown"
-          style={{ height: 1000 }}
-          className="h-full w-full resize-none p-4 font-roboto-mono text-primary-700 focus-visible:outline focus-visible:outline-orange-secondary dark:bg-primary-1000 dark:text-secondary-400 md:p-5 md:py-8"
+          className="h-full w-full resize-none p-4 py-8 font-roboto-mono text-primary-700 focus-visible:outline focus-visible:outline-orange-secondary dark:bg-primary-1000 dark:text-secondary-400 md:p-5 md:pb-12"
           value={content || data[currentMarkdownNum]?.content}
           onChange={(e) => setContent(e.target.value)}
         />

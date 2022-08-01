@@ -24,7 +24,7 @@ export default function MarkdownContainer({ content, setContent }) {
   return (
     <>
       {/* For mobile viewport */}
-      <div className="md:hidden">
+      <div className="overflow-auto  md:hidden">
         {!isPreviewVisible && (
           <MarkdownEditor
             content={content}
