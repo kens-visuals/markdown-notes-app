@@ -86,7 +86,7 @@ export default function Sidebar() {
 
         {/* add height for mobile */}
         <ul
-          className={`my-7 space-y-3 overflow-y-scroll 
+          className={`my-6 space-y-3 overflow-y-scroll 
           ${data.length >= 4 && 'h-2/6'}`}
         >
           <MarkdownListItem />
