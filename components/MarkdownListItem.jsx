@@ -18,7 +18,10 @@ export default function MarkdownListItem() {
     setCurrentMarkdown,
   } = useContext(DataContext);
 
-  useEffect(() => setCurrentMarkdownNum(0), [data]);
+  useEffect(() => {
+    setCurrentMarkdownNum(0);
+    setCurrentMarkdown(data[currentMarkdownNum]);
+  }, [data]);
 
   const handleCurrentMarkdownSelection = (idx) => {
     setCurrentMarkdown(data[idx]);
