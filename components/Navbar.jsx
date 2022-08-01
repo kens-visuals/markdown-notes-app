@@ -29,7 +29,7 @@ export default function Navbar({ content, isSidebarOpen, setIsSidebarOpen }) {
   const { data, currentMarkdown, currentMarkdownNum, setCurrentMarkdownNum } =
     useContext(DataContext);
 
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState('' || data[currentMarkdownNum]?.title);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
 
@@ -47,6 +47,10 @@ export default function Navbar({ content, isSidebarOpen, setIsSidebarOpen }) {
 
   const handleTitleChange = (e) => {
     if (title === currentMarkdown.title) return;
+    if (title === '') {
+      setTitle('untitled.md');
+      return;
+    }
 
     updateTitle(e, currentUser.uid, currentMarkdown.id, title);
     setCurrentMarkdownNum(0);
@@ -131,7 +135,7 @@ export default function Navbar({ content, isSidebarOpen, setIsSidebarOpen }) {
                 <input
                   id="title"
                   type="text"
-                  value={title || data[currentMarkdownNum]?.title || ''}
+                  value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   className="w-9/12 border-b border-transparent bg-transparent text-white caret-orange-primary transition-[border] duration-300 focus-visible:border-b focus-visible:border-b-white focus-visible:outline-none  md:w-64"
                 />
