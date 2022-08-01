@@ -43,7 +43,7 @@ export default function MarkdownContainer({ content, setContent }) {
               isPreviewVisible={isPreviewVisible}
               setIsPreviewVisible={setIsPreviewVisible}
             >
-              <ReactMarkdown remarkPlugins={[gfm]}>
+              <ReactMarkdown linkTarget="_blank" remarkPlugins={[gfm]}>
                 {content || data[currentMarkdownNum]?.content}
               </ReactMarkdown>
             </MarkdownPreview>
@@ -80,7 +80,7 @@ export default function MarkdownContainer({ content, setContent }) {
                 isPreviewVisible={isPreviewVisible}
                 setIsPreviewVisible={setIsPreviewVisible}
               >
-                <ReactMarkdown remarkPlugins={[gfm]}>
+                <ReactMarkdown linkTarget="_blank" remarkPlugins={[gfm]}>
                   {content || data[currentMarkdownNum]?.content || ''}
                 </ReactMarkdown>
               </MarkdownPreview>
