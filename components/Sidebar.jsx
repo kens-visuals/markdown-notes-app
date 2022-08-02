@@ -28,7 +28,7 @@ export default function Sidebar() {
   return (
     <aside className="flex h-screen w-64 flex-shrink-0 flex-col justify-between bg-primary-900 p-6 py-8">
       {/* overflow-scroll for mobile */}
-      <div className={`${data.length >= 6 && 'overflow-scroll'}`}>
+      <div className={`${data.length >= 5 && 'overflow-scroll'}`}>
         <div className="flex w-full items-center lg:hidden">
           <Image
             src={logo}
@@ -87,7 +87,7 @@ export default function Sidebar() {
         {/* add height for mobile */}
         <ul
           className={`my-6 space-y-3 overflow-y-scroll md:my-7 
-          ${data.length >= 4 && 'h-2/6 md:h-full'}`}
+          ${data.length >= 5 && 'h-2/6 md:h-full'}`}
         >
           <MarkdownListItem />
         </ul>
