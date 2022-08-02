@@ -37,7 +37,7 @@ export default function MarkdownEditor({
       htmlFor="markdown"
       className="inline-block h-full w-full overflow-hidden"
     >
-      <div className="absolute top-0 flex w-full items-center justify-between bg-tertiary-200 p-3.5 dark:bg-primary-900 md:static md:px-5">
+      <div className="flex w-full items-center justify-between bg-tertiary-200 p-3.5 dark:bg-primary-900 md:static md:px-5">
         <span className="font-roboto text-sm uppercase tracking-widest text-secondary-500 dark:text-secondary-400">
           Markdown
         </span>
