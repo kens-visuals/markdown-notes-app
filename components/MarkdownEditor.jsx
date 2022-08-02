@@ -17,9 +17,10 @@ export default function MarkdownEditor({
   setIsPreviewVisible,
 }) {
   const { currentUser } = useContext(UserContext);
-  const { data, currentMarkdownNum, currentMarkdown } = useContext(DataContext);
+  const { data, currentMarkdownNum, currentMarkdown, setCurrentMarkdownNum } =
+    useContext(DataContext);
 
-  // When user chooses a different markdown, update the content and fore the textarea to reset
+  // When user chooses a different markdown, update the content and force the textarea to reset
   useEffect(() => {
     setContent(data[currentMarkdownNum]?.content);
   }, [currentMarkdownNum, currentUser]);
@@ -27,6 +28,7 @@ export default function MarkdownEditor({
   // When user changes the content and click on preview, save the changes
   useEffect(() => {
     if (currentUser && content !== currentMarkdown.content) {
+      setCurrentMarkdownNum(0);
       setContent(data[currentMarkdownNum]?.content);
       saveMarkdownChanges(currentUser?.uid, currentMarkdown.id, content);
     }
