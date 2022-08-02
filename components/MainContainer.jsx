@@ -15,7 +15,7 @@ export default function MainContainer({ isSidebarOpen, setIsSidebarOpen }) {
   );
 
   return (
-    <div className="grid h-screen w-full grid-rows-[auto_1fr] overflow-hidden bg-white dark:bg-primary-1000">
+    <div className="grid h-screen w-full grid-rows-[auto_1fr] bg-white dark:bg-primary-1000">
       <Navbar
         content={content}
         setContent={setContent}
@@ -23,7 +23,9 @@ export default function MainContainer({ isSidebarOpen, setIsSidebarOpen }) {
         setIsSidebarOpen={setIsSidebarOpen}
       />
 
-      <MarkdownContainer content={content} setContent={setContent} />
+      <div className="relative overflow-hidden">
+        <MarkdownContainer content={content} setContent={setContent} />
+      </div>
     </div>
   );
 }

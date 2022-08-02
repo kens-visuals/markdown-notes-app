@@ -55,8 +55,8 @@ export default function MarkdownContainer({ content, setContent }) {
         <div className="hidden md:flex">
           <ScrollSyncPane>
             <div
-              style={{ height: 1000 }}
-              className={`w-full overflow-auto md:flex md:flex-col 
+              // style={{ height: 1000 }}
+              className={`h-screen w-full overflow-auto md:flex md:flex-col 
               ${isPreviewVisible ? 'md:hidden' : 'md:w-1/2'}`}
             >
               <MarkdownEditor
@@ -70,8 +70,8 @@ export default function MarkdownContainer({ content, setContent }) {
 
           <ScrollSyncPane>
             <div
-              style={{ height: 1000 }}
-              className={`w-full overflow-auto 
+              // style={{ height: 1000 }}
+              className={`h-screen w-full overflow-auto 
               ${isPreviewVisible ? 'md:w-full' : 'md:w-1/2'}`}
             >
               <MarkdownPreview
