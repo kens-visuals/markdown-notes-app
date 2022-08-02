@@ -11,6 +11,7 @@ import { addNewMarkdown, signUserOut } from '../firebase/firebase-utils';
 // Components
 import ThemeToggler from './ThemeToggler';
 import MarkdownListItem from './MarkdownListItem';
+import Footer from './Footer';
 
 // Assets
 import logo from '../assets/logo.svg';
@@ -115,6 +116,8 @@ export default function Sidebar() {
             <span className="text-white">Log out</span>
           </button>
         )}
+
+        <Footer />
       </div>
     </aside>
   );
