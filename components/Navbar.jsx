@@ -75,7 +75,7 @@ export default function Navbar({ content, isSidebarOpen, setIsSidebarOpen }) {
 
       {isSaving && <Alert alertMessage={alertMessage} />}
 
-      <nav className="flex h-max w-full flex-shrink-0 justify-between bg-primary-800">
+      <nav className="flex h-max w-full justify-between bg-primary-800">
         <div className="flex justify-center gap-4">
           <button
             type="button"

@@ -25,7 +25,7 @@ export default function MarkdownContainer({ content, setContent }) {
       <>
         {/* For mobile viewport */}
         {!isPreviewVisible && (
-          <div className="relative overflow-hidden md:hidden">
+          <div className="overflow-hidden md:hidden">
             <MarkdownEditor
               content={content}
               setContent={setContent}
@@ -36,7 +36,7 @@ export default function MarkdownContainer({ content, setContent }) {
         )}
 
         {isPreviewVisible && (
-          <div className="relative overflow-auto md:hidden">
+          <div className="overflow-auto md:hidden">
             <MarkdownPreview
               setContent={setContent}
               isPreviewVisible={isPreviewVisible}
@@ -52,7 +52,7 @@ export default function MarkdownContainer({ content, setContent }) {
 
       {/* For tablet and biger viewports */}
       <ScrollSync>
-        <div className="relative hidden md:flex">
+        <div className="hidden md:flex">
           <ScrollSyncPane>
             <div
               style={{ height: 1000 }}
