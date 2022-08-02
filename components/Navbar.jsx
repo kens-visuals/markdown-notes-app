@@ -35,7 +35,10 @@ export default function Navbar({ content, isSidebarOpen, setIsSidebarOpen }) {
   const [alertMessage, setAlertMessage] = useState('');
 
   // Reset title input when data or currentMarkdownNum changes
-  useEffect(() => setTitle(data[0]?.title), [data, currentMarkdownNum]);
+  useEffect(() => {
+    setCurrentMarkdownNum(0);
+    setTitle(data[currentMarkdownNum]?.title);
+  }, [data, currentMarkdownNum]);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsSaving(false), 3000);
