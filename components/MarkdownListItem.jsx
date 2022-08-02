@@ -3,6 +3,7 @@ import Image from 'next/image';
 
 // Contexts
 import { DataContext } from '../contexts/DataContext';
+import { UserContext } from '../contexts/UserContext';
 
 // Utils
 import formatDate from '../utils/formatDate';
@@ -17,11 +18,12 @@ export default function MarkdownListItem() {
     setCurrentMarkdownNum,
     setCurrentMarkdown,
   } = useContext(DataContext);
+  const { currentUser } = useContext(UserContext);
 
   useEffect(() => {
     setCurrentMarkdownNum(0);
     setCurrentMarkdown(data[currentMarkdownNum]);
-  }, [data]);
+  }, [currentUser]);
 
   const handleCurrentMarkdownSelection = (idx) => {
     setCurrentMarkdown(data[idx]);

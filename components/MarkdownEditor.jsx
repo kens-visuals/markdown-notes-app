@@ -21,9 +21,7 @@ export default function MarkdownEditor({
 
   // When user chooses a different markdown, update the content and fore the textarea to reset
   useEffect(() => {
-    if (currentUser) {
-      setContent(data[currentMarkdownNum]?.content);
-    }
+    setContent(data[currentMarkdownNum]?.content);
   }, [currentMarkdownNum, currentUser]);
 
   // When user changes the content and click on preview, save the changes
@@ -65,7 +63,7 @@ export default function MarkdownEditor({
         <textarea
           id="markdown"
           defaultValue=""
-          className="h-full w-full resize-none p-4 pt-16 pb-32 font-roboto-mono text-primary-700 focus-visible:outline focus-visible:outline-orange-secondary dark:bg-primary-1000 dark:text-secondary-400 md:p-6 md:pb-12"
+          className="h-full w-full resize-none p-4 pt-16 pb-32 font-roboto-mono text-primary-700 focus-visible:outline focus-visible:outline-orange-secondary dark:bg-primary-1000 dark:text-secondary-400 md:p-6 md:pb-60"
           value={content}
           onChange={(e) => setContent(e.target.value)}
         />

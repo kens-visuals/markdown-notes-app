@@ -12,7 +12,7 @@ export default function Home() {
   const { data, currentMarkdownNum, setCurrentMarkdown } =
     useContext(DataContext);
 
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => setCurrentMarkdown(data[currentMarkdownNum]), [data]);
 
