@@ -8,6 +8,7 @@
   }
 }
 
+/* Custom styles for markdown typographt */
 @layer utilities {
   .orange-list-marker ul li::marker {
     color: #e46643;

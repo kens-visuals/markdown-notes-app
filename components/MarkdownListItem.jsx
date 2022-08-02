@@ -21,7 +21,6 @@ export default function MarkdownListItem() {
   const { currentUser } = useContext(UserContext);
 
   useEffect(() => {
-    setCurrentMarkdownNum(0);
     setCurrentMarkdown(data[currentMarkdownNum]);
   }, [currentUser]);
 

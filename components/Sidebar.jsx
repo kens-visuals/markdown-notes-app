@@ -25,6 +25,12 @@ export default function Sidebar() {
     setCurrentMarkdownNum,
   } = useContext(DataContext);
 
+  const handleNewMarkdown = () => {
+    addNewMarkdown(currentUser.uid);
+    setCurrentMarkdownNum(0);
+    setCurrentMarkdown(data[currentMarkdownNum]);
+  };
+
   return (
     <aside className="flex h-screen w-64 flex-shrink-0 flex-col justify-between bg-primary-900 p-6 py-8">
       {/* overflow-scroll for mobile */}
@@ -74,11 +80,7 @@ export default function Sidebar() {
           <button
             type="button"
             className="w-full rounded bg-orange-primary p-3 text-center text-white lg:transition-all lg:duration-300 lg:hover:bg-orange-secondary"
-            onClick={() => {
-              addNewMarkdown(currentUser.uid);
-              setCurrentMarkdownNum(0);
-              setCurrentMarkdown(data[currentMarkdownNum]);
-            }}
+            onClick={handleNewMarkdown}
           >
             + New Document
           </button>
