@@ -1,20 +1,12 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState } from 'react';
 import Head from 'next/head';
-
-// Contexts
-import { DataContext } from '../contexts/DataContext';
 
 // Components
 import Sidebar from '../components/Sidebar';
 import MainContainer from '../components/MainContainer';
 
 export default function Home() {
-  const { data, currentMarkdownNum, setCurrentMarkdown } =
-    useContext(DataContext);
-
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
-  useEffect(() => setCurrentMarkdown(data[currentMarkdownNum]), [data]);
 
   return (
     <div>
@@ -22,7 +14,7 @@ export default function Home() {
         <title>Markdown App</title>
         <meta
           name="description"
-          content="Markdown editor built with NEXTJS and Firebase"
+          content="Markdown editor built with NextJS and Firebase"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
