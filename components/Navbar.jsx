@@ -36,7 +36,6 @@ export default function Navbar({ content, isSidebarOpen, setIsSidebarOpen }) {
 
   // Reset title input when data or currentMarkdownNum changes
   useEffect(() => {
-    setCurrentMarkdownNum(0);
     setTitle(data[currentMarkdownNum]?.title);
   }, [data, currentMarkdownNum]);
 
