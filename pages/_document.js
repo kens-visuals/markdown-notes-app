@@ -8,6 +8,8 @@ export default function Document() {
           name="description"
           content="Markdown editor built with NextJS and Firebase Firestore. Coded by Kens-Visuals"
         />
+        <meta property="og:image" content="https://mugshotbot.com/m/P34RyMqb" />
+        <meta property="twitter:card" content="summary_large_image" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"

@@ -16,6 +16,15 @@ export default function Home() {
           name="description"
           content="Markdown editor built with NextJS and Firebase Firestore. Coded by Kens-Visuals"
         />
+        <meta property="og:title" content="Markdown App" />
+        <meta name="author" content="Kens-Visuals" />
+        <meta
+          property="og:url"
+          content="https://markdown-notes-app-delta.vercel.app/"
+        />
+        <meta property="og:image" content="https://mugshotbot.com/m/P34RyMqb" />
+        <meta property="twitter:card" content="summary_large_image" />
+
         <link
           rel="apple-touch-icon"
           sizes="180x180"
