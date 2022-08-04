@@ -14,9 +14,26 @@ export default function Home() {
         <title>Markdown App</title>
         <meta
           name="description"
-          content="Markdown editor built with NextJS and Firebase"
+          content="Markdown editor built with NextJS and Firebase Firestore. Coded by Kens-Visuals"
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
       </Head>
 
       <div className="flex overflow-auto selection:bg-orange-primary selection:text-white">

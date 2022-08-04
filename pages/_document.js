@@ -6,7 +6,7 @@ export default function Document() {
       <Head>
         <meta
           name="description"
-          content="Markdown editor coded with NextJS and Firebase Firestore. Coded by Kens-Visuals"
+          content="Markdown editor built with NextJS and Firebase Firestore. Coded by Kens-Visuals"
         />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -18,6 +18,24 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto+Slab:wght@300;400;700&family=Roboto:wght@300;400&display=swap"
           rel="stylesheet"
         />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
       </Head>
 
       <body>
