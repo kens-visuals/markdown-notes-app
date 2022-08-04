@@ -46,7 +46,7 @@ export default function Navbar({ content, isSidebarOpen, setIsSidebarOpen }) {
   }, [isSaving]);
 
   const handleTitleChange = (e) => {
-    if (title === currentMarkdown.title) return;
+    if (title === data[currentMarkdownNum]?.title) return;
     if (title === '') {
       setTitle('untitled.md');
       return;
@@ -59,7 +59,7 @@ export default function Navbar({ content, isSidebarOpen, setIsSidebarOpen }) {
   };
 
   const handleSaveContent = () => {
-    if (content === currentMarkdown.content) return;
+    if (content === data[currentMarkdownNum]?.content) return;
 
     setIsSaving(true);
     setAlertMessage('Markdown saved successfully!');
@@ -68,11 +68,9 @@ export default function Navbar({ content, isSidebarOpen, setIsSidebarOpen }) {
 
   return (
     <>
-      {isModalOpen && (
-        <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
-      )}
+      <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
 
-      {isSaving && <Alert alertMessage={alertMessage} />}
+      <Alert alertMessage={alertMessage} isSaving={isSaving} />
 
       <nav className="flex h-max w-full justify-between bg-primary-800">
         <div className="flex justify-center gap-4">
