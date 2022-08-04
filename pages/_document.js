@@ -4,7 +4,7 @@ export default function Document() {
   return (
     <Html>
       <Head>
-        <title>Markdown App</title>
+        {/* Meta Tags */}
         <meta
           name="description"
           content="Markdown editor built with NextJS and Firebase Firestore. Coded by Kens-Visuals"
@@ -17,7 +17,18 @@ export default function Document() {
         />
         <meta property="og:image" content="https://mugshotbot.com/m/P34RyMqb" />
         <meta property="twitter:card" content="summary_large_image" />
-
+        {/* Fonts */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="true"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto+Slab:wght@300;400;700&family=Roboto:wght@300;400&display=swap"
+          rel="stylesheet"
+        />
+        {/* Favicon */}
         <link
           rel="apple-touch-icon"
           sizes="180x180"
