@@ -60,11 +60,14 @@ export default function MarkdownEditor({
       </div>
 
       <ScrollSyncPane>
-        <textarea
-          className="h-full w-full resize-none p-4 pb-32 font-roboto-mono text-primary-700 focus-visible:outline focus-visible:outline-orange-secondary dark:bg-primary-1000 dark:text-secondary-400 md:p-6 md:pb-60"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-        />
+        <label htmlFor="markdown-editor">
+          <textarea
+            id="markdown-editor"
+            className="h-full w-full resize-none p-4 pb-32 font-roboto-mono text-primary-700 focus-visible:outline focus-visible:outline-orange-secondary dark:bg-primary-1000 dark:text-secondary-400 md:p-6 md:pb-60"
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+          />
+        </label>
       </ScrollSyncPane>
     </div>
   );
