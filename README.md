@@ -1,4 +1,4 @@
-# In-browser Markdown Editor Solution
+# In-browser Markdown Editor App
 
 ## Table of contents
 
