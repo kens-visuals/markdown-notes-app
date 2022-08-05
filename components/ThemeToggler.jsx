@@ -22,7 +22,10 @@ export default function ThemeToggler() {
   };
 
   return (
-    <div className="relative inline-flex cursor-pointer items-center gap-4">
+    <label
+      htmlFor="theme-toggle"
+      className="relative inline-flex cursor-pointer items-center gap-4"
+    >
       <Image
         src={moonIcon}
         alt="dark mode"
@@ -34,16 +37,14 @@ export default function ThemeToggler() {
         }`}
       />
 
-      <label htmlFor="theme-toggle">
-        <input
-          type="checkbox"
-          value={checked}
-          checked={checked}
-          onChange={handleCheckedChange}
-          id="theme-toggle"
-          className="peer sr-only"
-        />
-      </label>
+      <input
+        type="checkbox"
+        value={checked}
+        checked={checked}
+        onChange={handleCheckedChange}
+        id="theme-toggle"
+        className="peer sr-only"
+      />
       <div className="peer h-6 w-11 rounded-full bg-secondary-600 after:absolute after:top-[2px] after:left-[35px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all peer-checked:bg-secondary-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-orange-primary dark:border-gray-600 dark:bg-secondary-600 " />
 
       <Image
@@ -56,6 +57,6 @@ export default function ThemeToggler() {
           theme === 'light' ? 'opacity-100' : 'opacity-50'
         }`}
       />
-    </div>
+    </label>
   );
 }

@@ -33,7 +33,7 @@ Users should be able to:
 ### Links
 
 - Live Site URL: [https://markdown-notes-app-delta.vercel.app/](https://markdown-notes-app-delta.vercel.app/)
-- Solution URL: [TO_BE_UPDATED](TO_BE_UPDATED)
+- Solution URL: [https://www.frontendmentor.io/solutions/markdown-editor-app-built-with-nextjs-tailwindcss-and-firebase-N-SvSRipHi](https://www.frontendmentor.io/solutions/markdown-editor-app-built-with-nextjs-tailwindcss-and-firebase-N-SvSRipHi)
 
 ## My process
 
