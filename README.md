@@ -1,4 +1,4 @@
-# Frontend Mentor - In-browser Markdown Editor Solution
+# In-browser Markdown Editor Solution
 
 ## Table of contents
 
@@ -9,7 +9,6 @@
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
-  - [Continued development](#continued-development)
   - [Useful resources](#useful-resources)
 - [Author's Links](#authors-links)
 
