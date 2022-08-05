@@ -35,10 +35,7 @@ export default function MarkdownEditor({
   }, [isPreviewVisible]);
 
   return (
-    <label
-      htmlFor="markdown"
-      className="inline-block h-full w-full overflow-hidden"
-    >
+    <div className="inline-block h-full w-full overflow-hidden">
       <div className="flex h-max w-full items-center justify-between bg-tertiary-200 p-3.5 dark:bg-primary-900 md:static md:px-5">
         <span className="font-roboto text-sm uppercase tracking-widest text-secondary-500 dark:text-secondary-400">
           Markdown
@@ -48,6 +45,7 @@ export default function MarkdownEditor({
           type="button"
           onClick={() => setIsPreviewVisible(true)}
           className="flex h-2 items-center justify-center fill-secondary-500 p-1 md:hidden lg:transition-all lg:duration-100 lg:hover:fill-orange-primary"
+          aria-label="Preview"
         >
           {/* Preview Icon */}
           <svg
@@ -63,13 +61,11 @@ export default function MarkdownEditor({
 
       <ScrollSyncPane>
         <textarea
-          id="markdown"
-          defaultValue=""
           className="h-full w-full resize-none p-4 pb-32 font-roboto-mono text-primary-700 focus-visible:outline focus-visible:outline-orange-secondary dark:bg-primary-1000 dark:text-secondary-400 md:p-6 md:pb-60"
           value={content}
           onChange={(e) => setContent(e.target.value)}
         />
       </ScrollSyncPane>
-    </label>
+    </div>
   );
 }

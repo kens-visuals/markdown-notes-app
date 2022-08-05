@@ -78,6 +78,7 @@ export default function Navbar({ content, isSidebarOpen, setIsSidebarOpen }) {
             type="button"
             className="flex items-center justify-center bg-primary-700 p-4 lg:transition-all lg:duration-300 lg:ease-in-out lg:hover:bg-orange-primary"
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+            aria-label="menu toggle"
           >
             {isSidebarOpen ? (
               <Image
@@ -155,6 +156,7 @@ export default function Navbar({ content, isSidebarOpen, setIsSidebarOpen }) {
                 type="button"
                 onClick={() => setIsModalOpen(true)}
                 className="fill-secondary-500 p-1 lg:transition-all lg:duration-100 lg:hover:fill-orange-primary"
+                aria-label="delete modal opener"
               >
                 <svg
                   width="18"
@@ -170,6 +172,7 @@ export default function Navbar({ content, isSidebarOpen, setIsSidebarOpen }) {
                 type="button"
                 onClick={handleSaveContent}
                 className="flex items-center justify-center rounded bg-orange-primary p-2 md:gap-3 lg:transition-all lg:duration-300 lg:hover:bg-orange-secondary"
+                aria-label="save content"
               >
                 <Image
                   src={saveIcon}
@@ -194,6 +197,7 @@ export default function Navbar({ content, isSidebarOpen, setIsSidebarOpen }) {
               type="button"
               className="flex w-36 items-center justify-center gap-2 rounded bg-orange-primary p-1 text-xs text-white md:w-max md:p-2 md:px-3 md:text-base"
               onClick={signInWithGoogle}
+              aria-label="sign in with google"
             >
               Login with Google
               <Image
