@@ -27,6 +27,7 @@ export default function MarkdownPreview({
           type="button"
           onClick={() => setIsPreviewVisible(!isPreviewVisible)}
           className="flex h-2 items-center justify-center fill-secondary-500 p-1 lg:transition-all lg:duration-100 lg:hover:fill-orange-primary"
+          aria-label="Toggle preview"
         >
           {isPreviewVisible ? (
             // Hide Preview Icon
