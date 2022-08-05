@@ -104,6 +104,7 @@ export default function Sidebar() {
             type="button"
             className="flex w-full items-center justify-center gap-2 rounded border border-orange-primary p-1.5 md:gap-2 lg:transition-all lg:duration-300 lg:hover:border-transparent lg:hover:bg-orange-secondary"
             onClick={signUserOut}
+            aria-label="Log out"
           >
             <Image
               src={logoutIcon}

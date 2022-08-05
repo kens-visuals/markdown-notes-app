@@ -23,9 +23,9 @@ export default function MainContainer({ isSidebarOpen, setIsSidebarOpen }) {
         setIsSidebarOpen={setIsSidebarOpen}
       />
 
-      <div className="overflow-hidden">
+      <main className="overflow-hidden">
         <MarkdownContainer content={content} setContent={setContent} />
-      </div>
+      </main>
     </div>
   );
 }
